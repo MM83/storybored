@@ -1,0 +1,25 @@
+@import "bootstrap.css";
+
+
+.synopsis-textarea {
+	resize: none;
+	outline: none;
+	border: 1px solid rgb(206, 212, 218);
+	border-radius: 0.25em;
+	padding: 0.5em;
+	box-sizing: border-box;
+	color: #495057;
+	height: 10em;
+}
+
+.notes-textarea {
+	resize: none;
+	outline: none;
+	border: 1px solid rgb(206, 212, 218);
+	border-radius: 0.25em;
+	padding: 0.5em;
+	box-sizing: border-box;
+	color: #495057;
+	flex-grow: 1;
+	font-weight: 100;
+}

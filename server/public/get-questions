@@ -1,0 +1,97 @@
+{
+	"any-other-data" : {},
+	"questions" : [
+		{
+                 "qId":"1",
+                 "q":{"en":"Where did Vicente Fernández write the name of his beloved?", "es":"¿En qué grabó Vicente Fernández, el nombre de su amada?"},
+                 "a1":{"en":"In a bush", "es":"En el monte"},
+                 "a2":{"en":"In a Registery Office", "es":"En el registro civil"},
+                 "a3":{"en":"On the leaf of an Agave", "es":"En la penca de un maguey"}
+        },
+        {
+                "qId":"2",
+                "q":{"en":"Who was the first president of Mexico?", "es":"¿Quién fue el primer presidente de México?"},
+                "a1":{"en":"José María Iglesias", "es":"José María Iglesias"},
+                "a2":{"en":"José María Morelos y Pavón", "es":"José María Morelos y Pavón"},
+                "a3":{"en":"Guadalupe Victoria", "es":"Guadalupe Victoria"}
+        },
+        {
+                 "qId":"3",
+                 "q":{"en":"What was the first album by Luis Miguel called, produced by Armando Manzanero?", "es":"¿Cómo se llamó el primer disco de Luis Miguel, producido por Armando Manzanero?"},
+                 "a1":{"en":"Mexico on the Skin", "es":"México en la Piel"},
+                 "a2":{"en":"Find a Woman", "es":"Busca una Mujer"},
+                 "a3":{"en":"Romance", "es":"Romance"}
+        },
+        {
+                 "qId":"4",
+                 "q":{"en":"Which of these books was written by Octavio Paz?", "es":"¿Cuál de estos libros, fue escrito por Octavio Paz?"},
+                 "a1":{"en":"Pedro Páramo", "es":"Pedro Páramo"},
+                 "a2":{"en":"The Labyrinth of Solitude", "es":"El Laberinto de la Soledad"},
+                 "a3":{"en":"The Most Transparent Region", "es":"La Región Más Transparente"}
+        },
+        {
+                 "qId":"5",
+                 "q":{"en":"In what country was Gal Gadot born, the new Wonder Woman?", "es":"¿En qué país nació Gal Gadot, la nueva Mujer Maravilla?"},
+                 "a1":{"en":"USA", "es":"Estados Unidos"},
+                 "a2":{"en":"Israel", "es":"Israel"},
+                 "a3":{"en":"Turkey", "es":"Turquía"}
+        },
+        {
+                 "qId":"6",
+                 "q":{"en":"On what hill was the Emperor Maximilian of Hapsburg shot?", "es":"¿En qué cerro fue fusilado el Emperador Maximiliano de Habsburgo?"},
+                 "a1":{"en":"Hill of Bells", "es":"Cerro de las Campanas"},
+                 "a2":{"en":"Ajusco Hill", "es":"Cerro del Ajusco"},
+                 "a3":{"en":"Beaker Hill", "es":"Cerro del Cubilete"}
+        },
+        {
+                 "qId":"7",
+                 "q":{"en":"In what year was the first Coca-Cola bottled?", "es":"¿En qué año se embotelló la primera Coca-Cola?"},
+                 "a1":{"en":"1954", "es":"1954"},
+                 "a2":{"en":"1886", "es":"1886"},
+                 "a3":{"en":"1912", "es":"1912"}
+        },
+        {
+                 "qId":"8",
+                 "q":{"en":"What do Shakira and Carlos Vives ride?", "es":"¿En qué pasean Shakira y Carlos Vives?"},
+                 "a1":{"en":"Avalanche", "es":"Avalancha"},
+                 "a2":{"en":"Bicyle", "es":"Bicicleta"},
+                 "a3":{"en":"Convertible", "es":"Descapotable"}
+        },
+        {
+                 "qId":"9",
+                 "q":{"en":"What novel was written by scientist Carl Sagan?", "es":"¿Qué novela fe escrita por el científico Carl Sagan?"},
+                 "a1":{"en":"Cosmos", "es":"Cosmos"},
+                 "a2":{"en":"Contact", "es":"Contact"},
+                 "a3":{"en":"A Pale Blue Dot", "es":"Un Punto Azul Pálido"}
+        },
+        {
+                 "qId":"10",
+                 "q":{"en":"What was Maluma's first single?", "es":"¿Cuál fue el primer sencillo de Maluma?"},
+                 "a1":{"en":"Farandulera", "es":"Farandulera"},
+                 "a2":{"en":"La Temperatura", "es":"La Temperatura"},
+                 "a3":{"en":"Addicted", "es":"Addicted"}
+        },
+        {
+                 "qId":"11",
+                 "q":{"en":"Who plays the saxophone in the rock band, Caifanes?", "es":"¿Quién toca el saxofón en la banda de rock, Caifanes?"},
+                 "a1":{"en":"Alfonso André", "es":"Alfonso André"},
+                 "a2":{"en":"Sax Rocco", "es":"Sax Rocco"},
+                 "a3":{"en":"Diego Herrera", "es":"Diego Herrera"}
+        },
+        {
+                 "qId":"12",
+                 "q":{"en":"How many years did it take to build the Metropolitan Cathedral of Mexico City", "es":"¿Cuántos años duró la construcción de la Catedral Metropolitana de la Ciudad de México?"},
+                 "a1":{"en":"80 years", "es":"80 años"},
+                 "a2":{"en":"Three centuries", "es":"Tres Siglos"},
+                 "a3":{"en":"15 years", "es":"15 años"}
+        },
+        {
+                 "qId":"13",
+                 "q":{"en":"What is Euler's polyhedral formula?", "es":"¿Cuál es la fórmula de Euler para los poliedros?"},
+                 "a1":{"en":"E=mc&#178;", "es":"E=mc&#178;"},
+                 "a2":{"en":"a&#178;+b&#178;=c&#178;", "es":"a&#178;+b&#178;=c&#178;"},
+                 "a3":{"en":"V+C-A=2", "es":"V+C-A=2"}
+        }
+
+	]
+}

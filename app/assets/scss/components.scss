@@ -1,0 +1,107 @@
+@import "bootstrap.css";
+
+
+.generic-list-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $lightest;
+}
+
+.generic-list-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $lightest;
+}
+
+.generic-list-item-selected {
+  background: $darker;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $lightest;
+}
+
+.generic-list-item:hover {
+  background: $lightest;
+}
+
+.generic-list-item-title {
+  padding: 0.5em;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.generic-list-item-options {
+  display: flex;
+}
+.generic-list-item-options > div {
+  font-size: 0.75em;
+  padding: 0.5em;
+  color: $darker;
+  cursor: pointer;
+  transition: 0.5s;
+  flex-grow: 1;
+  flex-basis: 1;
+  text-align: center;
+}
+.generic-list-item-options > div:hover {
+  color: $darkest;
+  cursor: pointer;
+  background: $lighter;
+}
+
+.tag-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: green;
+  align-self: flex-start;
+  color: white;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+	margin: 0.25rem;
+}
+
+.tag-inline-name {
+  padding: 0.5rem;
+}
+
+.tag-inline-options {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  align-self: stretch;
+}
+
+.tag-inline-option {
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.tag-inline-option:hover {
+  font-weight: 700;
+}
+
+.filter-list {
+  border: 1px solid #ced4da;
+  background: white;
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem;
+}
+.filter-list-row {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+.filter-list-label {
+  flex-grow: 1;
+  font-size: 0.75rem;
+}
+
+.filter-list > h6 {
+  cursor: pointer;
+  padding: 0.5rem;
+  padding-left: 0.25rem;
+  margin: 0;
+}

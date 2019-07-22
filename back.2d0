@@ -1,0 +1,4 @@
+after get game status call, if active, send game with result-socket-query-active to update the HomeBox view
+Cancel quiz in UI
+Trigger events
+Game time sync

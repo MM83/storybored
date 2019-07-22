@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>De Kabeza Prompter</title>
+	<style type="text/css">
+		body, html {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			background: black;
+			color: white;
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 2vmin;
+		}
+		div {
+			display: flex;
+			flex-grow: 1;
+			flex-direction: column;
+			box-sizing: border-box;
+			justify-content: center;
+			align-items: center;
+		}
+		.container {
+			position: absolute;
+			top: 2vh;
+			left: 2vh;
+			bottom: 2vh;
+			right: 2vh;
+		}
+		.top-section {
+			align-self: stretch;
+		}
+		.bottom-section {
+			max-height: 30vh;
+			align-self: stretch;
+			padding: 2vh;
+		}
+		.chat-feed {
+			border-radius: 0.25vh;
+			border: 1px solid white;
+			width: 90%;
+			justify-content: flex-start;
+			align-items: flex-start; 
+			overflow: hidden;
+		}
+		.chat-line {
+			width: 100%;
+			flex-grow: 0;
+			flex-direction: row;
+			border-bottom: 1px solid #444;
+		}
+
+		.chat-user {
+			font-weight: 900;
+			font-size: 1.2em;
+			padding: 1vh;
+			width: 20%;
+			text-align: right;
+		}
+		.chat-text {
+			flex-grow: 1;
+			padding: 1vh;
+		}
+		.chat-time {
+			padding: 1vh;
+			justify-content: flex-start;
+			align-items: flex-start;
+		}
+
+		.main-section {
+			align-self: stretch;
+			justify-content: flex-start;
+		}
+
+		.question-header {
+			flex-grow: 0;
+			font-size: 2vh;
+			padding: 2vh;
+			padding-top: 4vh;
+			text-align: center;
+		}
+
+		.question-text {
+			flex-grow: 0;
+			font-size: 5vh;
+			padding: 1vh;
+			text-align: center;
+		}
+
+		.question-commentary {
+			flex-grow: 0;
+			font-size: 4vh;
+			padding: 1vh;
+			text-align: center;
+		}
+
+		.live-question-answers {
+			align-self: stretch;
+		}
+
+		.live-question-answer {
+			font-size: 3vh;
+			align-self: stretch;
+			/*background: red;*/
+			flex-direction: row;
+		}
+
+		.bottom-info {
+			align-self: stretch;
+			/*justify-content: flex-start;*/
+			align-items: flex-start;
+		}
+
+		.answer-correct {
+			background: green;
+		}
+
+		.answer-incorrect {
+			background: red;
+		}
+		.answer-perc {
+			font-size: 6vh;
+			font-weight: 900;
+			margin-left: 2vh;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="top-section">
+			<div class="main-section">
+				<div class="question-header">
+					Question 1
+				</div>
+				<div class="question-text">
+					This is some question text
+				</div>
+				<div class="question-commentary">
+					This is some commentary
+				</div>
+				<div class="live-question-answers">
+					<div class="live-question-answer answer-correct">Answer One <span class="answer-perc">17%</span></div>
+					<div class="live-question-answer answer-incorrect">Answer Two <span class="answer-perc">18%</span></div>
+					<div class="live-question-answer answer-incorrect">Answer Three <span class="answer-perc">30%</span></div>
+					<div class="live-question-answer answer-incorrect">Answer Four <span class="answer-perc">25%</span></div>
+				</div>
+			</div>
+ 
+		</div>
+
+		<div class="bottom-section">
+			<div class="bottom-info">
+				Total players : 75
+			</div>
+			<div class="chat-feed">
+				<div class="chat-line">
+					<span class="chat-user">Jim</span>
+					<span class="chat-text">I don't like eggs but I do like frying things</span>
+					<span class="chat-time">04:23</span>
+				</div>
+				<div class="chat-line">
+					<span class="chat-user">User 20342</span>
+					<span class="chat-text">Yeah I'm equally averse to eggs</span>
+					<span class="chat-time">04:24</span>
+				</div>
+				<div class="chat-line">
+					<span class="chat-user">Rish</span>
+					<span class="chat-text">I invented eggs whilst studying at Cambridge</span>
+					<span class="chat-time">04:25</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

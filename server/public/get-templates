@@ -1,0 +1,51 @@
+{
+        "any-other-data" : {},
+        "templates" : 
+        [
+                {
+                        "name" : "My Quiz Template",
+                        "any-other-data" : {},
+                        "start-events" : [],
+                        "user-events" : 
+                        [
+                                {
+                                         "action":"question",
+                                         "qNo":0,
+                                         "timeout":10,
+                                         "key":"FUYGIHLISJ"
+                                },{
+                                         "action":"question",
+                                         "qNo":1,
+                                         "timeout":10,
+                                         "key":"FUYGIHLISJ"
+                                },{
+                                         "action":"sponsor-advert",
+                                         "other-data": {},
+                                         "key":"FUYGIHLISJ"
+                                }
+                        ]
+                },{
+                        "name" : "My Other Quiz Template",
+                        "any-other-data" : {},
+                        "start-events" : [],
+                        "user-events" : 
+                        [
+                                {
+                                         "action":"question",
+                                         "qNo":2,
+                                         "timeout":10,
+                                         "key":"FUYGIHLISJ"
+                                },{
+                                         "action":"question",
+                                         "qNo":3,
+                                         "timeout":10,
+                                         "key":"FUYGIHLISJ"
+                                },{
+                                         "action":"sponsor-advert",
+                                         "other-data": {},
+                                         "key":"FUYGIHLISJ"
+                                }
+                        ]
+                }
+        ]
+}

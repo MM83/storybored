@@ -1,0 +1,23 @@
+@import "bootstrap.css";
+
+.nav-panel {
+	background: $lightest;
+	border-right: 1px solid $lighter;
+	width: 16em;
+	display: flex;
+	flex-direction: column;
+	align-self: stretch;
+}
+
+.nav-panel > a {
+	transition: 0.5s;
+	text-decoration: none;
+	padding: 1em;
+	// font-size: 0.8em;
+}
+
+.nav-panel > a:hover {
+	background: $darkest;
+	color: $lightest;
+	text-decoration: none;
+}

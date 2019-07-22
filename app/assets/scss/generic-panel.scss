@@ -1,0 +1,49 @@
+@import "bootstrap.css";
+
+
+.generic-panel {
+	height: 100%;
+	display: flex;
+}
+
+.generic-list {
+	padding: 0.5em;
+	width: 16em;
+	border-right: 1px solid $lighter;
+	display: flex;
+	flex-direction: column;
+}
+
+.generic-list-expander	{
+	position: relative;
+	flex-grow: 1;
+	margin: 0.25em;
+	border: 1px solid $lighter;
+	background: white;
+}
+
+.generic-list-scroller	{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.generic-new-button {
+	margin: 0.25em;
+}
+
+.generic-main-panel {
+	position: relative;
+	flex-grow: 1;
+}
+
+.generic-main-scroller {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 0.5em;
+	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
+}
