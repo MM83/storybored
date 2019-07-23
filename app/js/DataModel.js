@@ -11,12 +11,14 @@ export default new function DataModel()
         guid : "AAAA",
         notes : []
       }
-    ]
+    ],
+    characters : [],
+    selectedCharacter : -1
   };
 
   this.story = {};
 
-  this.createNewStory = ()=>
+  this.createNewStory = () =>
   {
     //Clone the base data
     this.story = JSON.parse(JSON.stringify(blankStory));
@@ -34,6 +36,26 @@ export default new function DataModel()
     };
     this.story.tags.push(tag);
     Core.dispatchEvent("tag-created", tag);
+  });
+
+  Core.addCommand("create-character", ()=>{
+    let char = {
+      name  : "New Character",
+      desc  : "",
+      guid  : Core.getUID()
+    };
+    this.story.characters.push(char);
+    this.story.selectedCharacter = this.story.characters.length - 1;
+    Core.dispatchEvent("character-created", char);
+  });
+
+  Core.addCommand("select-character", (index) => {
+    this.story.selectedCharacter = index;
+    Core.dispatchEvent("character-selected", this.story.characters[index]);
+  });
+
+  Core.respond("get-story", ()=>{
+    return this.story;
   });
 
 

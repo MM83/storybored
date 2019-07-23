@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import TagInline from './TagInline';
-import DataModel from '../../js/DataModel';
+import DataModel from '../../js/DataModel';//TODO - Remove this dependency
 import Core from '../../js/Core';
 
 class Comp extends React.Component {

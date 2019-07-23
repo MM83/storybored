@@ -1,40 +1,46 @@
 import React from 'react';
 import $ from 'jquery';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import Core from '../js/Core';
+import GenericListItem from './components/GenericListItem';
+// import DataModel from '../js/DataModel';
 
 class ViewCharacters extends React.Component {
 
   constructor(props)
   {
     super(props);
-    //<Route path="/home" component={ViewHome}/>
+    this.stateChange = this.stateChange.bind(this);
   }
 
-  //
-  // <div className="generic-main-scroller">
-  //
-  //   <h2>Name</h2>
-  //   <h6>The name of your character</h6>
-  //   <FormControl></FormControl>
-  //
-  //   <div className="h-spacer"></div>
-  //
-  //
-  //   <h2>Tags</h2>
-  //   <h6>Any tags you wish to associate with this character</h6>
-  //   <FormControl></FormControl>
-  //
-  //   <div className="h-spacer"></div>
-  //
-  //
-  //   <h2>Description</h2>
-  //   <h6>A brief summary of your character</h6>
-  //   <textarea className="synopsis-textarea">
-  //   </textarea>
-  //
-  // </div>
+  stateChange()
+  {
+    this.setState({});
+  }
+
+  componentDidMount()
+  {
+    Core.addEventListener("character-created", this.stateChange);
+    Core.addEventListener("character-selected", this.stateChange);
+    Core.addEventListener("character-info-changed", this.stateChange);
+  }
+
+  componentWillUnmount()
+  {
+    Core.removeEventListener("character-created", this.stateChange);
+    Core.removeEventListener("character-selected", this.stateChange);
+    Core.removeEventListener("character-info-changed", this.stateChange);
+  }
 
   render() {
+
+    // let story =
+
+    let story = Core.query("get-story");
+
+    let selectedCharacter = story.characters[story.selectedCharacter];
+
+
       return (
         <div className="app-panel">
           <div className="generic-panel">
@@ -42,13 +48,59 @@ class ViewCharacters extends React.Component {
               <h2>Characters</h2>
               <h6>The characters in your story</h6>
               <div className="generic-list-expander">
-                <div className="generic-list-scroller"></div>
+                <div className="generic-list-scroller">
+                {
+                    story.characters.map((item, index)=>{
+                      return (<GenericListItem type="char" index={index} item={item} key={index} selected={index == story.selectedCharacter}/>)
+                    })
+                }
+                </div>
               </div>
-              <Button className="generic-new-button">New Character</Button>
+              <Button className="generic-new-button" onClick={ ()=>{
+                  Core.exec("create-character");
+                }}>New Character</Button>
             </div>
             <div className="generic-main-panel">
 
-              <div className="empty-main-panel">No characters!</div>
+
+              {
+                (story.characters.length == 0) && (<div className="empty-main-panel">No characters!</div>)
+              }
+
+              {
+                ((story.characters.length > 0) && selectedCharacter) && (
+                  <div className="generic-main-scroller">
+
+                    <h2>Name</h2>
+                    <h6>The name of your character</h6>
+                    <FormControl value={selectedCharacter.name} onChange={(e)=>{
+                      selectedCharacter.name = e.currentTarget.value;
+                      Core.dispatchEvent("character-info-changed", selectedCharacter);
+                    }}></FormControl>
+
+                    <div className="h-spacer"></div>
+
+
+                    <h2>Tags</h2>
+                    <h6>Any tags you wish to associate with this character</h6>
+                    <FormControl></FormControl>
+
+                    <div className="h-spacer"></div>
+
+
+                    <h2>Description</h2>
+                    <h6>A brief summary of your character</h6>
+                    <textarea value={selectedCharacter.desc} className="synopsis-textarea" onChange={(e)=>{
+                      selectedCharacter.desc = e.currentTarget.value;
+                      Core.dispatchEvent("character-info-changed", selectedCharacter);
+                    }}>
+                    </textarea>
+
+                  </div>
+                )
+              }
+
+
 
             </div>
           </div>

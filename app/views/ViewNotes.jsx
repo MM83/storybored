@@ -30,18 +30,7 @@ class ViewNotes extends React.Component {
               <FilterList/>
               <div className="generic-list-expander">
                 <div className="generic-list-scroller">
-                  <GenericListItem title="My note 1" selected={true}/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
-                  <GenericListItem title="My note 1"/>
+                  
                 </div>
               </div>
               <Button className="generic-new-button">New Note</Button>
