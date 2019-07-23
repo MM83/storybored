@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Core from '../js/Core';
 import GenericListItem from './components/GenericListItem';
+import TagBar from './components/TagBar';
 // import DataModel from '../js/DataModel';
 
 class ViewCharacters extends React.Component {
@@ -83,7 +84,7 @@ class ViewCharacters extends React.Component {
 
                     <h2>Tags</h2>
                     <h6>Any tags you wish to associate with this character</h6>
-                    <FormControl></FormControl>
+                    <TagBar target={selectedCharacter}/>
 
                     <div className="h-spacer"></div>
 

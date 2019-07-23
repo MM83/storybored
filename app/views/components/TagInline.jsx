@@ -26,19 +26,25 @@ class Comp extends React.Component {
 
   render() {
 
-      // console.log("TAGAOLOG")
-
-      return (
-        <div className="tag-inline" style={ {backgroundColor : this.props.tag.color} }>
-          <div className="tag-inline-name">{this.props.tag.name}</div>
-          <div className="tag-inline-options">
-            <div className="tag-inline-option">Edit</div>
-            <div className="tag-inline-option">Delete</div>
+      if(this.props.target)
+      {
+        return (
+          <div className="tag-inline-property" style={ {backgroundColor : this.props.tag.color} }>
+            <div className="tag-inline-name">{this.props.tag.name}</div>
+          </div>);
+      } else {
+        return (
+          <div className="tag-inline" style={ {backgroundColor : this.props.tag.color} }>
+            <div className="tag-inline-name">{this.props.tag.name}</div>
+            <div className="tag-inline-options">
+              <div className="tag-inline-option">Edit</div>
+              <div className="tag-inline-option">Delete</div>
+            </div>
           </div>
+        );
+      }
 
-        </div>
 
-      );
   }
 
 }

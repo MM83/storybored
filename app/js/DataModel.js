@@ -5,10 +5,22 @@ export default new function DataModel()
   let blankStory = {
     tags : [
       {
-        name : "Sample Tag",
+        name : "Sample Tag 1",
         color : "#ff9900",
         description : "This is a tag. You can use this to assign simple, common attributes",
         guid : "AAAA",
+        notes : []
+      },{
+        name : "Sample Tag 2",
+        color : "#ff9900",
+        description : "This is a tag. You can use this to assign simple, common attributes",
+        guid : "BBBB",
+        notes : []
+      },{
+        name : "Sample Tag 3",
+        color : "#ff9900",
+        description : "This is a tag. You can use this to assign simple, common attributes",
+        guid : "CCCC",
         notes : []
       }
     ],
@@ -42,7 +54,8 @@ export default new function DataModel()
     let char = {
       name  : "New Character",
       desc  : "",
-      guid  : Core.getUID()
+      guid  : Core.getUID(),
+      tags  : []
     };
     this.story.characters.push(char);
     this.story.selectedCharacter = this.story.characters.length - 1;
@@ -52,6 +65,11 @@ export default new function DataModel()
   Core.addCommand("select-character", (index) => {
     this.story.selectedCharacter = index;
     Core.dispatchEvent("character-selected", this.story.characters[index]);
+  });
+
+  Core.addCommand("add-tag-to-target", (data)=>{
+    data.target.tags.push(data.tag.guid);
+    Core.dispatchEvent("tag-added-to-target", data.target);
   });
 
   Core.respond("get-story", ()=>{

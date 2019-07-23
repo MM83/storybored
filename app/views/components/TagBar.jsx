@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, InputGroup, FormControl, Dropdown } from 'react-bootstrap';
 import TagInline from './TagInline';
 import DataModel from '../../js/DataModel';//TODO - Remove this dependency
 import Core from '../../js/Core';
@@ -13,23 +13,25 @@ class Comp extends React.Component {
     //<Route path="/home" component={ViewHome}/>
     this.createTag = this.createTag.bind(this);
     this.addTagToTarget = this.addTagToTarget.bind(this);
-    this.tagCreated = this.tagCreated.bind(this);
+    this.stateChange = this.stateChange.bind(this);
 
   }
 
-  tagCreated()
+  stateChange()
   {
     this.setState({});
   }
 
   componentDidMount()
   {
-    Core.addEventListener("tag-created", this.tagCreated);
+    Core.addEventListener("tag-created", this.stateChange);
+    Core.addEventListener("tag-added-to-target", this.stateChange);
   }
 
   componentWillUnmount()
   {
-    Core.removeEventListener("tag-created", this.tagCreated);
+    Core.removeEventListener("tag-created", this.stateChange);
+    Core.removeEventListener("tag-added-to-target", this.stateChange);
   }
 
   createTag()
@@ -82,39 +84,98 @@ class Comp extends React.Component {
   addTagToTarget()
   {
     console.log("ADD TAG");
+
   }
 
 
   render() {
 
       let story = DataModel.story;
-      let tags = [];
+      let target = this.props.target;
 
+      let canCreateTags = (target == "all");
 
-      switch (this.props.target) {
-        case "all"://Here, we just show all tags indiscriminately from the root
-          tags = story.tags;
-          break;
-      }
+      let storyTags = story.tags;
 
-      let createTag = (this.props.target == "all");
+      if(canCreateTags){
+        //We're on the story page, so we can create tags and draw them directly from their objects
+        return (
+          <div className="tag-form-input">
+            {
+              storyTags.map((item, index)=>{
+                return (<TagInline tag={item} key={index}/>);
+              })
+            }
+            <Button onClick={this.createTag} className="new-tag-button">New Tag...</Button>
+          </div>
 
-      let buttonLabel = createTag ? "Create Tag" : "Add Tag";
-      let buttonHandler = createTag ? this.createTag : this.addTagToTarget;
+        );
+      } else {
 
-      console.log("i like tags", tags);
+        //For this, we need to iterate the list of available tags in the story itself, and see if any of these are
+        //actually available/
+        //<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
 
-      return (
-        <div className="tag-form-input">
+        let targetTags = target.tags;
+
+        let availableTags = [];
+
+        for(let i = 0; i < storyTags.length; ++i)
+        {
+          let tag = story.tags[i];
+          let available = true;
+          inner : for(let j = 0; j < targetTags.length; ++j)
           {
-            tags.map((item, index)=>{
-              return (<TagInline tag={item} key={index}/>);
-            })
+            let targetTagGUID = targetTags[i];//In a target, these are stored as GUIDs only
+            if(tag.guid == targetTagGUID){
+              available = false;
+              break inner;
+            }
           }
-          <Button onClick={buttonHandler} className="new-tag-button">{buttonLabel}...</Button>
-        </div>
+          if(available)
+            availableTags.push(tag);
+        }
 
-      );
+        return (
+          <div className="tag-form-input">
+
+            {
+              targetTags.map((item, index)=>{
+                let tag;
+
+                for(let i = 0; i < storyTags.length; ++i)
+                {
+                  let sTag = storyTags[i];
+                  if(sTag.guid == item)
+                    tag = sTag;
+                }
+                if(tag)
+                  return (<TagInline tag={tag} key={index} target={target}/>);
+              })
+            }
+
+            <Dropdown className="tag-dropdown">
+              <Dropdown.Toggle id="dropdown-basic">
+                Add Tag
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {
+                  availableTags.map((item, index)=>{
+                    return <Dropdown.Item key={index} onClick={()=>{
+                        console.log("ITEM CLUB", item, target);
+                        Core.exec("add-tag-to-target", {
+                          tag : item,
+                          target : target
+                        });
+                      }}>{item.name}</Dropdown.Item>
+                  })
+                }
+              </Dropdown.Menu>
+            </Dropdown>
+
+          </div>);
+      }
   }
 
 }
