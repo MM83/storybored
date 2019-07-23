@@ -89,6 +89,12 @@
   flex-direction: column;
   margin: 0.25rem;
 }
+
+.filter-list-contents {
+  display: flex;
+  flex-direction: column;
+}
+
 .filter-list-row {
   display: flex;
   align-items: center;
