@@ -25,13 +25,19 @@ class Comp extends React.Component {
   componentDidMount()
   {
     Core.addEventListener("tag-created", this.stateChange);
+    Core.addEventListener("tag-updated", this.stateChange);
+    Core.addEventListener("tag-deleted", this.stateChange);
     Core.addEventListener("tag-added-to-target", this.stateChange);
+    Core.addEventListener("tag-removed-from-target", this.stateChange);
   }
 
   componentWillUnmount()
   {
     Core.removeEventListener("tag-created", this.stateChange);
+    Core.removeEventListener("tag-updated", this.stateChange);
+    Core.removeEventListener("tag-deleted", this.stateChange);
     Core.removeEventListener("tag-added-to-target", this.stateChange);
+    Core.removeEventListener("tag-removed-from-target", this.stateChange);
   }
 
   createTag()
@@ -154,7 +160,9 @@ class Comp extends React.Component {
               })
             }
 
-            <Dropdown className="tag-dropdown">
+            {
+
+            (availableTags.length > 0) && (<Dropdown className="tag-dropdown">
               <Dropdown.Toggle id="dropdown-basic">
                 Add Tag
               </Dropdown.Toggle>
@@ -172,7 +180,8 @@ class Comp extends React.Component {
                   })
                 }
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown>)
+          }
 
           </div>);
       }
