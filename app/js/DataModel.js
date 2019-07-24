@@ -30,15 +30,21 @@ export default new function DataModel()
         }
       },
     ],
+
     characters : [],
     selectedCharacter : -1,
 
+    items : [],
+    selectedItem : -1,
+
+    locations : [],
+    selectedLocation : -1,
 
     searchModifiers : {
       notes : {
-        catsOpen : true,
-        tagsOpen : true,
-        byTag : true,
+        catsOpen : false,
+        tagsOpen : false,
+        byTag : false,
         categories : {
           Story : true,
           Characters : true,

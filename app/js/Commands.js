@@ -115,6 +115,27 @@ export default new function Commands()
       Core.dispatchEvent("character-selected", DataModel.story.characters[index]);
     });
 
+    Core.addCommand("create-item", ()=>{
+      let item = {
+        name  : "New Item",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : []
+      };
+      DataModel.story.items.push(item);
+      DataModel.story.selectedItem = DataModel.story.items.length - 1;
+      Core.dispatchEvent("item-created", item);
+    });
+
+    Core.addCommand("select-item", (index) => {
+      DataModel.story.selectedItem = index;
+      Core.dispatchEvent("item-selected", DataModel.story.items[index]);
+    });
+
+
+
+
+
     Core.addCommand("add-tag-to-target", (data)=>{
       data.target.tags.push(data.tag.guid);
       Core.dispatchEvent("tag-added-to-target", data.target);
