@@ -29,6 +29,7 @@ class Comp extends React.Component {
             }} className="generic-list-item-title">{name}</div>
           <div className="generic-list-item-options">
 
+            <div>Duplicate</div>
             <div>Delete</div>
           </div>
         </div>
