@@ -10,6 +10,7 @@
 	box-sizing: border-box;
 	color: #495057;
 	height: 10em;
+	flex-shrink: 0;
 }
 
 .notes-textarea {

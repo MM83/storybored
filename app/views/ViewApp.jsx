@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import DataModel from '../js/DataModel';
+import Commands from '../js/Commands';
 import { Button } from 'react-bootstrap';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import TopBar from './TopBar';

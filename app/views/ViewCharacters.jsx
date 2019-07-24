@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Core from '../js/Core';
 import GenericListItem from './components/GenericListItem';
+import NoteList from './components/NoteList';
 import TagBar from './components/TagBar';
 // import DataModel from '../js/DataModel';
 
@@ -74,7 +75,7 @@ class ViewCharacters extends React.Component {
 
                     <h2>Name</h2>
                     <h6>The name of your character</h6>
-                    <FormControl value={selectedCharacter.name} onChange={(e)=>{
+                    <FormControl className="no-flex-shrink" value={selectedCharacter.name} onChange={(e)=>{
                       selectedCharacter.name = e.currentTarget.value;
                       Core.dispatchEvent("character-info-changed", selectedCharacter);
                     }}></FormControl>
@@ -96,6 +97,13 @@ class ViewCharacters extends React.Component {
                       Core.dispatchEvent("character-info-changed", selectedCharacter);
                     }}>
                     </textarea>
+
+                    <div className="h-spacer"></div>
+
+
+                    <h2>Notes</h2>
+                    <h6>Any notes you wish to make about this character</h6>
+                    <NoteList/>
 
                   </div>
                 )

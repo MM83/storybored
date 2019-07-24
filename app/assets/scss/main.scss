@@ -127,10 +127,24 @@ h6 {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
+	flex-shrink: 0;
 }
 
 .new-tag-button {
 		margin: 0.25rem;
+}
+
+.notes-type-bar {
+	margin: 0.25rem;
+}
+
+.notes-type-button {
+	width: 3em;
+	font-size: 0.75em;
+}
+
+.no-flex-shrink {
+	flex-shrink: 0;
 }
 
 
