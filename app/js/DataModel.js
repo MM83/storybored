@@ -9,8 +9,26 @@ export default new function DataModel()
         color : "#ff9900",
         description : "This is a tag. You can use this to assign simple, common attributes",
         guid : "AAAA",
-        notes : []
-      }
+        searchModifiers : {
+          notes : true
+        }
+      },{
+        name : "Sample Tag 2",
+        color : "#ff9900",
+        description : "This is a tag. You can use this to assign simple, common attributes",
+        guid : "AAdAA",
+        searchModifiers : {
+          notes : true
+        }
+      },{
+        name : "Sample Tag 3",
+        color : "#ff9900",
+        description : "This is a tag. You can use this to assign simple, common attributes",
+        guid : "AA42AA",
+        searchModifiers : {
+          notes : false
+        }
+      },
     ],
     characters : [],
     selectedCharacter : -1,
@@ -19,8 +37,8 @@ export default new function DataModel()
     searchModifiers : {
       notes : {
         catsOpen : true,
-        tagsOpen : false,
-        byTag : false,
+        tagsOpen : true,
+        byTag : true,
         categories : {
           Story : true,
           Characters : true,

@@ -61,7 +61,7 @@ class ViewNotes extends React.Component {
                 <Button onClick={this.setByTag} variant={ byTag ? "secondary" : "primary"} className="notes-type-button">Tags</Button>
               </ButtonGroup>
               { !byTag && (<FilterList visTarget={searchModifiers} visProp={"catsOpen"} />)}
-              { byTag && (<TagList visTarget={searchModifiers} visProp={"tagsOpen"} />)}
+              { byTag && (<TagList visTarget={searchModifiers} visProp={"tagsOpen"} category="notes" />)}
               <div className="generic-list-expander">
                 <div className="generic-list-scroller">
 
