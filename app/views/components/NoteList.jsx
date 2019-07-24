@@ -17,17 +17,6 @@ class NoteList extends React.Component {
       return (
         <div className="note-list-container">
           <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
-          <NoteListItem/>
           <Button className="add-new-note-button">Add new note...</Button>
         </div>
 

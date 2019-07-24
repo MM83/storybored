@@ -133,6 +133,24 @@ export default new function Commands()
     });
 
 
+    Core.addCommand("create-location", ()=>{
+      let location = {
+        name  : "New Location",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : []
+      };
+      DataModel.story.locations.push(location);
+      DataModel.story.selectedLocation = DataModel.story.locations.length - 1;
+      Core.dispatchEvent("location-created", location);
+    });
+
+    Core.addCommand("select-location", (index) => {
+      DataModel.story.selectedLocation = index;
+      Core.dispatchEvent("location-selected", DataModel.story.locations[index]);
+    });
+
+
 
 
 

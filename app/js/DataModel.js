@@ -51,7 +51,6 @@ export default new function DataModel()
           Items : true,
           Locations : true,
           Events : true,
-          Attributes : true,
           Regions : true,
           World : true
         }

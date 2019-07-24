@@ -25,6 +25,10 @@ class Comp extends React.Component {
                 case "item":
                   Core.exec("select-item", this.props.index);
                 break;
+                break;
+                case "location":
+                  Core.exec("select-location", this.props.index);
+                break;
               }
             }} className="generic-list-item-title">{name}</div>
           <div className="generic-list-item-options">

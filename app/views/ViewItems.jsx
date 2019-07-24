@@ -35,7 +35,6 @@ class ViewItems extends React.Component {
   render() {
 
         let story = Core.query("get-story");
-
         let selectedItem = story.items[story.selectedItem];
 
       return (
