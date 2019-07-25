@@ -15,7 +15,11 @@ export default new function Commands()
         color : data.color,
         guid  : Core.getUID(),
         searchModifiers : {
-          notes : true
+          notes : true,
+          characters : true,
+          events : true,
+          locations: true,
+          regions : true
         }
       };
       DataModel.story.tags.push(tag);
@@ -205,6 +209,42 @@ export default new function Commands()
       data.target.tags.splice(index, 1);
       Core.dispatchEvent("tag-removed-from-target", data.target);
     });
+
+    function getNoteContent()
+    {
+      return (
+        <div className="note-edit-container">
+          <h1>Note Title</h1>
+          <FormControl/>
+          <h1>Note</h1>
+          <textarea className="note-edit-textarea"/>
+        </div>
+      );
+    }
+
+
+    Core.addCommand("create-note", ()=>{
+      Core.exec("open-modal", {
+        heading : "Create Note",
+        body : getNoteContent(),
+        buttons : [
+          {
+            text : "Save Note",
+            handler : ()=>{
+              Core.exec("close-modal");
+            }
+          },{
+            text : "Cancel",
+            handler : ()=>{
+              Core.exec("close-modal");
+            }
+          }
+        ]
+      });
+
+    });
+
+
 
 
 }

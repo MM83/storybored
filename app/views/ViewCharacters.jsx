@@ -4,6 +4,7 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Core from '../js/Core';
 import GenericListItem from './components/GenericListItem';
 import NoteList from './components/NoteList';
+import TagList from './components/TagList';
 import TagBar from './components/TagBar';
 // import DataModel from '../js/DataModel';
 
@@ -39,7 +40,7 @@ class ViewCharacters extends React.Component {
     // let story =
 
     let story = Core.query("get-story");
-
+    let searchModifiers = story.searchModifiers.notes;
     let selectedCharacter = story.characters[story.selectedCharacter];
 
 
@@ -64,7 +65,6 @@ class ViewCharacters extends React.Component {
             </div>
             <div className="generic-main-panel">
 
-
               {
                 (story.characters.length == 0) && (<div className="empty-main-panel">No characters!</div>)
               }
@@ -85,7 +85,7 @@ class ViewCharacters extends React.Component {
 
                     <h2>Tags</h2>
                     <h6>Any tags you wish to associate with this character</h6>
-                    <TagBar target={selectedCharacter}/>
+                    <TagBar target={selectedCharacter} visProp={"tagsOpen"} category="notes" />
 
                     <div className="h-spacer"></div>
 
@@ -103,7 +103,7 @@ class ViewCharacters extends React.Component {
 
                     <h2>Notes</h2>
                     <h6>Any notes you wish to make about this character</h6>
-                    <NoteList/>
+                    <NoteList target={selectedCharacter}/>
 
                   </div>
                 )
