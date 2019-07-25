@@ -24,12 +24,14 @@ class ViewEvents extends React.Component {
   {
     Core.addEventListener("event-created", this.stateChange);
     Core.addEventListener("event-selected", this.stateChange);
+    Core.addEventListener("event-info-changed", this.stateChange);
   }
 
   componentWillUnmount()
   {
     Core.removeEventListener("event-created", this.stateChange);
     Core.removeEventListener("event-selected", this.stateChange);
+    Core.removeEventListener("event-info-changed", this.stateChange);
   }
 
 
@@ -72,7 +74,7 @@ class ViewEvents extends React.Component {
                     <h6>The name of your event</h6>
                     <FormControl className="no-flex-shrink" value={selectedEvent.name} onChange={(e)=>{
                       selectedEvent.name = e.currentTarget.value;
-                      Core.dispatchEvent("item-info-changed", selectedEvent);
+                      Core.dispatchEvent("event-info-changed", selectedEvent);
                     }}></FormControl>
 
                     <div className="h-spacer"></div>
@@ -89,7 +91,7 @@ class ViewEvents extends React.Component {
                     <h6>A brief summary of your event</h6>
                     <textarea value={selectedEvent.desc} className="synopsis-textarea" onChange={(e)=>{
                       selectedEvent.desc = e.currentTarget.value;
-                      Core.dispatchEvent("character-info-changed", selectedEvent);
+                      Core.dispatchEvent("event-info-changed", selectedEvent);
                     }}>
                     </textarea>
 
