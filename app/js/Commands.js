@@ -152,6 +152,46 @@ export default new function Commands()
 
 
 
+    Core.addCommand("create-event", ()=>{
+      let event = {
+        name  : "New Event",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : []
+      };
+      DataModel.story.events.push(event);
+      DataModel.story.selectedEvent = DataModel.story.events.length - 1;
+      Core.dispatchEvent("event-created", event);
+    });
+
+    Core.addCommand("select-event", (index) => {
+      DataModel.story.selectedEvent = index;
+      Core.dispatchEvent("event-selected", DataModel.events.locations[index]);
+    });
+
+
+
+
+
+    Core.addCommand("create-region", ()=>{
+      let region = {
+        name  : "New Region",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : []
+      };
+      DataModel.story.regions.push(region);
+      DataModel.story.selectedRegion = DataModel.story.regions.length - 1;
+      Core.dispatchEvent("region-created", event);
+    });
+
+    Core.addCommand("select-region", (index) => {
+      DataModel.story.selectedRegion = index;
+      Core.dispatchEvent("region-selected", DataModel.story.regions[index]);
+    });
+
+
+
 
 
     Core.addCommand("add-tag-to-target", (data)=>{

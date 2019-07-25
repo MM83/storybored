@@ -29,7 +29,7 @@ class ViewItems extends React.Component {
   componentWillUnmount()
   {
     Core.removeEventListener("item-created", this.stateChange);
-    Core.addEventListener("item-selected", this.stateChange);
+    Core.removeEventListener("item-selected", this.stateChange);
   }
 
   render() {

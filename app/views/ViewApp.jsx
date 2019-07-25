@@ -12,6 +12,7 @@ import ViewCharacters from './ViewCharacters';
 import ViewEvents from './ViewEvents';
 import ViewLocations from './ViewLocations';
 import ViewItems from './ViewItems';
+import ViewRegions from './ViewRegions';
 import ViewAttributes from './ViewAttributes';
 import ViewModal from './ViewModal';
 
@@ -40,6 +41,7 @@ class ViewApp extends React.Component {
                 <Route path="/locations" component={ViewLocations}/>
                 <Route path="/events" component={ViewEvents}/>
                 <Route path="/items" component={ViewItems}/>
+                <Route path="/regions" component={ViewRegions}/>
                 <Route path="/attributes" component={ViewAttributes}/>
               </Switch>
             </HashRouter>

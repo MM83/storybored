@@ -89,8 +89,7 @@ class Comp extends React.Component {
 
   addTagToTarget()
   {
-    console.log("ADD TAG");
-
+  
   }
 
 
@@ -171,7 +170,7 @@ class Comp extends React.Component {
                 {
                   availableTags.map((item, index)=>{
                     return <Dropdown.Item key={index} onClick={()=>{
-                        console.log("ITEM CLUB", item, target);
+
                         Core.exec("add-tag-to-target", {
                           tag : item,
                           target : target

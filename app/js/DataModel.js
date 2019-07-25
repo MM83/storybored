@@ -40,6 +40,12 @@ export default new function DataModel()
     locations : [],
     selectedLocation : -1,
 
+    events : [],
+    selectedEvent : -1,
+
+    regions : [],
+    selectedRegion : -1,
+
     searchModifiers : {
       notes : {
         catsOpen : false,

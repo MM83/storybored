@@ -30,7 +30,7 @@ class ViewLocations extends React.Component {
   componentWillUnmount()
   {
     Core.removeEventListener("location-created", this.stateChange);
-    Core.addEventListener("location-selected", this.stateChange);
+    Core.removeEventListener("location-selected", this.stateChange);
   }
 
 
@@ -38,7 +38,7 @@ class ViewLocations extends React.Component {
   render() {
 
       let story = Core.query("get-story");
-      let selectedLocation = story.items[story.selectedLocation];
+      let selectedLocation = story.locations[story.selectedLocation];
 
       return (
         <div className="app-panel">
