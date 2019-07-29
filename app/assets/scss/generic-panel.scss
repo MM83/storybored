@@ -29,6 +29,17 @@
 	overflow-y: scroll;
 }
 
+.generic-list-scroller > h2 {
+	margin: 0;
+	display: flex;
+	flex-shrink: 0;
+	padding: 0.5rem;
+	justify-content: center;
+	align-items: center;
+	background: #eeeeee;
+	border-bottom: 1px solid $lighter;
+}
+
 .generic-new-button {
 	margin: 0.25em;
 }

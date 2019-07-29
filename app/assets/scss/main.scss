@@ -62,6 +62,7 @@ div {
 .main-panel {
 	flex-grow: 1;
 	display: flex;
+	position: relative;
 }
 
 .empty-main-panel {
@@ -147,9 +148,17 @@ h6 {
 	flex-shrink: 0;
 }
 
+.attr-edit-button {
+	align-self: flex-start;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
 
 @import "synopsis.scss";
 @import "nav-panel.scss";
 @import "generic-panel.scss";
 @import "components.scss";
 @import "modal.scss";
+@import "world.scss";

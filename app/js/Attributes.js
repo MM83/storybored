@@ -3,7 +3,7 @@ export default new function Attributes()
 {
 
   const Types = {
-    FloatRange : Symbol("Float"),
+    FloatRange : Symbol("Decimal"),
     IntegerRange : Symbol("Integer"),
     Set : Symbol("Set"),
     Binary : Symbol("Binary")
@@ -141,11 +141,11 @@ export default new function Attributes()
       break;
       case Types.Set:
         attr.limited = !!props.limited;
-        attr.default = props.default || 0;
+        attr.defaultValue = props.default || 0;
         attr.set = props.set || [];
       break;
       case Types.Binary:
-        attr.default = !!props.default;
+        attr.defaultValue = !!props.default;
       break;
     }
 

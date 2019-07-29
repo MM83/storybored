@@ -43,14 +43,13 @@ class ViewAttributes extends React.Component {
       let list = attr.list;
       let selectedIndex = attr.selectedAttribute;
       let selected = list[selectedIndex];
-      
 
       return (
         <div className="app-panel">
           <div className="generic-panel">
             <div className="generic-list">
               <h2>Attributes</h2>
-              <h6>Properties of items and characters</h6>
+              <h6>Dynamic properties of story objects</h6>
               <div className="generic-list-expander">
                 <div className="generic-list-scroller">
                   {
@@ -65,6 +64,53 @@ class ViewAttributes extends React.Component {
                     new : true
                   });
                 }}>New Attribute</Button>
+            </div>
+            <div className="generic-main-panel">
+              {
+                (list.length == 0) && (<div className="empty-main-panel">No attributes!</div>)
+              }
+              {
+                ((list.length > 0) && selected) && (
+                  <div className="generic-main-scroller">
+                    <h2>{selected.name}</h2>
+                    {
+                      (()=>{
+                        let outstr = "";
+                        switch(selected.type)
+                        {
+                          case attr.types.FloatRange:
+                            outstr = "Type: Decimal";
+                            if(selected.limited)
+                              outstr += ", limited (min=" + selected.min + ", max=" + selected.max + ")";
+                            outstr += ", default: " + selected.defaultValue;
+                          break;
+                          case attr.types.IntegerRange:
+                            outstr = "Type: Integer";
+                            if(selected.limited)
+                              outstr += ", limited (min=" + selected.min + ", max=" + selected.max + ")";
+                            outstr += ", default: " + selected.defaultValue;
+                          break;
+                          case attr.types.Set:
+                            outstr += "Type: Set, options: ";
+                            for(let i in selected.set)
+                            {
+                              outstr += selected.set[i] + "  ";
+                            }
+                          break;
+                          case attr.types.Binary:
+                            outstr += "Type: Binary, default: " + selected.defaultValue;
+                          break;
+                        }
+                        return (<h6>{outstr}</h6>);
+                      })()
+
+                    }
+                    <Button className="attr-edit-button">Edit...</Button>
+                    <h2>Attribute attachments</h2>
+                    <h6>None</h6>
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>

@@ -89,6 +89,11 @@ class ViewCharacters extends React.Component {
 
                     <div className="h-spacer"></div>
 
+                    <h2>Attributes</h2>
+                    <h6>Any attributes you wish this character to have</h6>
+
+                    <div className="h-spacer"></div>
+
 
                     <h2>Description</h2>
                     <h6>A brief summary of your character</h6>
