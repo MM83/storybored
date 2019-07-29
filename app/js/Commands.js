@@ -1,7 +1,8 @@
 import Core from './Core';
 import React from 'react';
 import DataModel from './DataModel';
-import { Button, InputGroup, FormControl, Dropdown } from 'react-bootstrap';
+import CreateEditAttribute from '../views/modal/CreateEditAttribute';
+import { Button, InputGroup, FormControl, Dropdown, DropdownButton } from 'react-bootstrap';
 
 export default new function Commands()
 {
@@ -107,7 +108,8 @@ export default new function Commands()
         name  : "New Character",
         desc  : "",
         guid  : Core.getUID(),
-        tags  : []
+        tags  : [],
+        notes : []
       };
       DataModel.story.characters.push(char);
       DataModel.story.selectedCharacter = DataModel.story.characters.length - 1;
@@ -124,7 +126,8 @@ export default new function Commands()
         name  : "New Item",
         desc  : "",
         guid  : Core.getUID(),
-        tags  : []
+        tags  : [],
+        notes : []
       };
       DataModel.story.items.push(item);
       DataModel.story.selectedItem = DataModel.story.items.length - 1;
@@ -142,7 +145,8 @@ export default new function Commands()
         name  : "New Location",
         desc  : "",
         guid  : Core.getUID(),
-        tags  : []
+        tags  : [],
+        notes : []
       };
       DataModel.story.locations.push(location);
       DataModel.story.selectedLocation = DataModel.story.locations.length - 1;
@@ -161,7 +165,8 @@ export default new function Commands()
         name  : "New Event",
         desc  : "",
         guid  : Core.getUID(),
-        tags  : []
+        tags  : [],
+        notes : []
       };
       DataModel.story.events.push(event);
       DataModel.story.selectedEvent = DataModel.story.events.length - 1;
@@ -182,7 +187,8 @@ export default new function Commands()
         name  : "New Region",
         desc  : "",
         guid  : Core.getUID(),
-        tags  : []
+        tags  : [],
+        notes : []
       };
       DataModel.story.regions.push(region);
       DataModel.story.selectedRegion = DataModel.story.regions.length - 1;
@@ -210,20 +216,25 @@ export default new function Commands()
       Core.dispatchEvent("tag-removed-from-target", data.target);
     });
 
+    let noteTitleRef    = React.createRef();
+    let noteContentRef  = React.createRef();
+
     function getNoteContent()
     {
       return (
         <div className="note-edit-container">
           <h1>Note Title</h1>
-          <FormControl/>
+          <FormControl ref={noteTitleRef}/>
           <h1>Note</h1>
-          <textarea className="note-edit-textarea"/>
+          <textarea ref={noteContentRef} className="note-edit-textarea"/>
         </div>
       );
     }
 
 
-    Core.addCommand("create-note", ()=>{
+
+    Core.addCommand("create-note", (data)=>{
+      console.log("data", data);
       Core.exec("open-modal", {
         heading : "Create Note",
         body : getNoteContent(),
@@ -232,6 +243,21 @@ export default new function Commands()
             text : "Save Note",
             handler : ()=>{
               Core.exec("close-modal");
+              let note = {
+                name : noteTitleRef.current.value,
+                text : noteContentRef.current.value,
+                guid : Core.getUID()
+              };
+
+              //Add this note to story notes
+
+
+              console.log("target", data.target, note);
+              // Core.exec("add-note-to-story", {
+              //   name : oteTitleRef.current.value,
+              //   text : noteContentRef.current.value,
+              //   target : data.target
+              // });
             }
           },{
             text : "Cancel",
@@ -244,6 +270,30 @@ export default new function Commands()
 
     });
 
+
+    Core.addCommand("open-new-edit-attribute", (data)=>{
+
+      Core.exec("open-modal", {
+        heading : data.new ? "New Attribute" : "Edit Attribute",
+        body : (<CreateEditAttribute newAttribute={true}/>),
+        buttons : [
+          {
+            text : "Create",
+            handler : () => {
+
+              Core.exec("close-modal");
+            }
+          },{
+            text : "Cancel",
+            handler : ()=>{
+              Core.exec("close-modal");
+            }
+          }
+        ]
+      });
+
+
+    });
 
 
 

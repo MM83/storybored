@@ -9,7 +9,6 @@ class NoteList extends React.Component {
   constructor(props)
   {
     super(props);
-    //<Route path="/home" component={ViewHome}/>
   }
 
 
@@ -17,10 +16,10 @@ class NoteList extends React.Component {
   render() {
       return (
         <div className="note-list-container">
-          <NoteListItem/>
+
           <Button className="add-new-note-button" onClick={()=>{
               Core.exec("create-note", {
-
+                target : this.props.target
               });
             }}>Add new note...</Button>
         </div>

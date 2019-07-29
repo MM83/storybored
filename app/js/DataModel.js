@@ -1,8 +1,10 @@
 import Core from './Core';
+import Attributes from './Attributes';
 
 export default new function DataModel()
 {
   let blankStory = {
+    notes : [],
     tags : [
       {
         name : "Sample Tag 1",
@@ -66,6 +68,8 @@ export default new function DataModel()
 
   };
 
+  this.attributes = Attributes;
+
   this.story = {};
 
   this.createNewStory = () =>
@@ -80,6 +84,9 @@ export default new function DataModel()
     return this.story;
   });
 
+  Core.respond("get-attributes", ()=>{
+    return Attributes;
+  });
 
 
 }
