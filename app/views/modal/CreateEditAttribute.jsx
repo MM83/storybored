@@ -1,25 +1,48 @@
 import React from 'react';
 import $ from 'jquery';
 import { Button, InputGroup, FormControl, Dropdown, DropdownButton } from 'react-bootstrap';
+import ListItemInline from '../components/ListItemInline';
+import Core from '../../js/Core';
 
 class CreateEditAttribute extends React.Component {
 
   constructor(props)
   {
     super(props);
-    //<Route path="/home" component={ViewHome}/>
+    this.addListItem = this.addListItem.bind(this);
+    this.removeListItem = this.removeListItem.bind(this);
+    this.createAttribute = this.createAttribute.bind(this);
     this.state = {
-      name : "SDSDS",
+      name : "",
       defaultValue: 0,
       defaultBin : true,
       typeIndex : 0,
       limited : false,
       min : 0,
       max : 9999,
+      newTagText : "",
       prev : {
         max : 9999, min : 0, defaultValue : 0
-      }
+      },
+      listItems : []
     };
+  }
+
+  removeListItem(index)
+  {
+    this.state.listItems.splice(index, 1);
+    this.setState({});
+  }
+
+  addListItem(item)
+  {
+    this.state.listItems.push(item);
+    this.setState({});
+  }
+
+  createAttribute()
+  {
+    Core.exec("create-attribute", this.state);
   }
 
   componentDidMount()
@@ -30,8 +53,17 @@ class CreateEditAttribute extends React.Component {
     this.state.min = 0;
     this.state.max = 9999;
     this.state.value = 0;
+    Core.addCommand("remove-item-from-list", this.removeListItem);
+    Core.addCommand("add-item-to-list", this.addListItem);
+    Core.addCommand("create-attribute-from-view", this.createAttribute);
   }
 
+  componentWillUnmount()
+  {
+    Core.removeCommand("remove-item-from-list", this.removeListItem);
+    Core.removeCommand("add-item-to-list", this.addListItem);
+    Core.removeCommand("create-attribute-from-view", this.createAttribute);
+  }
 
 
   render() {
@@ -71,11 +103,9 @@ class CreateEditAttribute extends React.Component {
           this.state.defaultValue = this.state.min;
       }
 
-
       this.state.prev.max = this.state.max;
       this.state.prev.min = this.state.min;
       this.state.prev.defaultValue = this.state.defaultValue;
-
 
       let isNumeric = this.state.typeIndex < 2;
       let isBinary  = this.state.typeIndex == 2;
@@ -86,7 +116,11 @@ class CreateEditAttribute extends React.Component {
             <InputGroup.Prepend>
               <InputGroup.Text>Name</InputGroup.Text>
             </InputGroup.Prepend>
-              <FormControl></FormControl>
+              <FormControl onChange={(e)=>{
+                  this.setState({
+                    name : e.target.value
+                  })
+                }} value={this.state.name}></FormControl>
           </InputGroup>
 
           <div className="h-spacer"></div>
@@ -194,6 +228,43 @@ class CreateEditAttribute extends React.Component {
                 <Dropdown.Item eventKey={1}>True</Dropdown.Item>
                 <Dropdown.Item eventKey={0}>False</Dropdown.Item>
               </DropdownButton>
+            </InputGroup>
+
+          </div>)}
+
+          {(this.state.typeIndex == 3) && (<div className="attr-modal-section">
+
+            <div className="h-spacer"></div>
+
+            <div className="tag-form-input">
+            {
+              this.state.listItems.map((item, index)=>{
+                return (<ListItemInline key={index} index={index} name={item}/>);
+              })
+            }
+            </div>
+
+            <div className="h-spacer"></div>
+
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>New Item</InputGroup.Text>
+
+              </InputGroup.Prepend>
+              <FormControl onChange={(e)=>{
+                this.state.newTagText = e.target.value;
+                this.setState({});
+              }} value={this.state.newTagText}/>
+              <InputGroup.Append>
+                <Button onClick={()=>{
+                  if(this.state.newTagText.length > 0)
+                  {
+                    let newItem = this.state.newTagText;
+                    this.state.newTagText = "";
+                    Core.exec("add-item-to-list", newItem);
+                  }
+                }}>Add</Button>
+              </InputGroup.Append>
             </InputGroup>
 
           </div>)}

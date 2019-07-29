@@ -16,6 +16,8 @@ export default new function Attributes()
 
   this.list = attributes;
 
+  this.selectedAttribute = -1;
+
 
   function instantiate(owner)
   {
@@ -127,13 +129,13 @@ export default new function Attributes()
     {
       case Types.FloatRange:
         attr.limited = !!props.limited;
-        attr.default = +(props.default || 0);
+        attr.defaultValue = +(props.default || 0);
         attr.min = +(props.min || 0);
         attr.max = +(props.max || 0);
       break;
       case Types.IntegerRange:
         attr.limited = !!props.limited;
-        attr.default = Math.round(+props.default || 0);
+        attr.defaultValue = Math.round(+props.default || 0);
         attr.min = Math.round(+props.min || 0);
         attr.max = Math.round(+props.max || 0);
       break;

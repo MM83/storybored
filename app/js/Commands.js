@@ -1,6 +1,7 @@
 import Core from './Core';
 import React from 'react';
 import DataModel from './DataModel';
+import Attributes from './Attributes';
 import CreateEditAttribute from '../views/modal/CreateEditAttribute';
 import { Button, InputGroup, FormControl, Dropdown, DropdownButton } from 'react-bootstrap';
 
@@ -280,8 +281,8 @@ export default new function Commands()
           {
             text : "Create",
             handler : () => {
-
-              Core.exec("close-modal");
+              Core.exec("create-attribute-from-view");
+              // Core.exec("close-modal");
             }
           },{
             text : "Cancel",
@@ -295,6 +296,41 @@ export default new function Commands()
 
     });
 
+
+
+    Core.addCommand("create-attribute", (props)=>{
+      let type = Attributes.types.FloatRange;
+      let defaultValue = props.defaultValue;
+      switch(+props.typeIndex)
+      {
+        case 0:
+        type = Attributes.types.FloatRange;
+        break;
+        case 1:
+        type = Attributes.types.IntegerRange;
+        break;
+        case 2:
+        defaultValue = props.defaultBin;
+        type = Attributes.types.Binary;
+        break;
+        case 3:
+        defaultValue = 0;
+        type = Attributes.types.Set;
+        break;
+      }
+      props.type = type;
+      props.default = defaultValue;
+      props.set = props.listItems;
+      console.log("props name", props);
+      let attr = Attributes.defineAttribute(props);
+      Core.dispatchEvent("attribute-created", attr);
+      Core.exec("close-modal");
+    });
+
+    Core.addCommand("select-attribute", (index)=>{
+      Attributes.selectedAttribute = index;
+      Core.dispatchEvent("attribute-selected", index);
+    });
 
 
 }

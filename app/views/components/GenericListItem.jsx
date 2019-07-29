@@ -34,6 +34,10 @@ class Comp extends React.Component {
                 case "region":
                   Core.exec("select-region", this.props.index);
                 break;
+                break;
+                case "attr":
+                  Core.exec("select-attribute", this.props.index);
+                break;
               }
             }} className="generic-list-item-title">{name}</div>
           <div className="generic-list-item-options">

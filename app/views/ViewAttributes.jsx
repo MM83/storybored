@@ -39,10 +39,11 @@ class ViewAttributes extends React.Component {
 
   render() {
 
-      let attr = Core.query("get-attributes").map;
-      console.log("ATTTTT", attr);
-
-      let attrib
+      let attr = Core.query("get-attributes");
+      let list = attr.list;
+      let selectedIndex = attr.selectedAttribute;
+      let selected = list[selectedIndex];
+      
 
       return (
         <div className="app-panel">
@@ -53,9 +54,9 @@ class ViewAttributes extends React.Component {
               <div className="generic-list-expander">
                 <div className="generic-list-scroller">
                   {
-                      // story.characters.map((item, index)=>{
-                      //   return (<GenericListItem type="char" index={index} item={item} key={index} selected={index == story.selectedCharacter}/>)
-                      // })
+                      list.map((item, index)=>{
+                        return (<GenericListItem type="attr" index={index} item={item} key={index} selected={index == selectedIndex}/>)
+                      })
                   }
                 </div>
               </div>
