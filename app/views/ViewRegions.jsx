@@ -72,7 +72,7 @@ class ViewRegions extends React.Component {
                   <div className="generic-main-scroller">
 
                     <h2>Name</h2>
-                    <h6>The name of your event</h6>
+                    <h6>The name of your region</h6>
                     <FormControl className="no-flex-shrink" value={selectedRegion.name} onChange={(e)=>{
                       selectedRegion.name = e.currentTarget.value;
                       Core.dispatchEvent("region-info-changed", selectedRegion);
@@ -80,9 +80,8 @@ class ViewRegions extends React.Component {
 
                     <div className="h-spacer"></div>
 
-
                     <h2>Tags</h2>
-                    <h6>Any tags you wish to associate with this event</h6>
+                    <h6>Any tags you wish to associate with this region</h6>
                     <TagBar target={selectedRegion}/>
 
                     <div className="h-spacer"></div>

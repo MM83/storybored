@@ -39,14 +39,44 @@ export default new function DataModel()
     items : [],
     selectedItem : -1,
 
-    locations : [],
-    selectedLocation : -1,
+    locations : [
+      {
+        name  : "Minas Tirith",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : [],
+        notes : []
+      },{
+        name  : "Rohan",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : [],
+        notes : []
+      },{
+        name  : "That other one",
+        desc  : "",
+        guid  : Core.getUID(),
+        tags  : [],
+        notes : []
+      }
+    ],
+    selectedLocation : 0,
 
     events : [],
     selectedEvent : -1,
 
-    regions : [],
+    regions : [{
+      name  : "Middle Earth",
+      desc  : "",
+      guid  : Core.getUID(),
+      tags  : [],
+      notes : []
+    }],
     selectedRegion : -1,
+
+    world : {
+      dimensions : [2048, 2048]
+    },
 
     searchModifiers : {
       notes : {

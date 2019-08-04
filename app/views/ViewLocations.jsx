@@ -82,6 +82,12 @@ class ViewLocations extends React.Component {
 
                     <div className="h-spacer"></div>
 
+                    <h2>Region</h2>
+                    <h6>The  parent region, determined on map screen</h6>
+                      <FormControl className="no-flex-shrink" value={"No current region"} disabled></FormControl>
+
+
+
 
                     <h2>Tags</h2>
                     <h6>Any tags you wish to associate with this location</h6>
