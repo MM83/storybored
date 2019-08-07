@@ -17,8 +17,8 @@
 }
 .world-backing {
   position: absolute;
-  width: 2048;
-  height: 2048;
+  width: 4096px;
+  height: 4096px;
 }
 .world-scroller {
   position: absolute;
@@ -30,4 +30,34 @@
   background: red;
   background-position: center;
   background-size: cover;
+}
+.world-canvas {
+    position: absolute;
+}
+.world-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4096px;
+  height: 4096px;
+}
+.world-labels {
+  pointer-events: none;
+}
+.map-region {
+  display: flex;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  // border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.map-region-resize {
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100%;
+  right: -0.5rem;
+  bottom: -0.5rem;
+  background: white;
 }

@@ -24,6 +24,7 @@ class ViewEvents extends React.Component {
   componentDidMount()
   {
     Core.addEventListener("event-created", this.stateChange);
+    Core.addEventListener("event-deleted", this.stateChange);
     Core.addEventListener("event-selected", this.stateChange);
     Core.addEventListener("event-info-changed", this.stateChange);
   }
@@ -31,6 +32,7 @@ class ViewEvents extends React.Component {
   componentWillUnmount()
   {
     Core.removeEventListener("event-created", this.stateChange);
+    Core.removeEventListener("event-deleted", this.stateChange);
     Core.removeEventListener("event-selected", this.stateChange);
     Core.removeEventListener("event-info-changed", this.stateChange);
   }

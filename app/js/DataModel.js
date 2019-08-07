@@ -70,7 +70,21 @@ export default new function DataModel()
       desc  : "",
       guid  : Core.getUID(),
       tags  : [],
-      notes : []
+      notes : [],
+      position : [20, 50],
+      radius : 100,
+      shapeType : "circle",
+      color : "#0099ff"
+    },{
+      name  : "Sobbo Earth",
+      desc  : "",
+      guid  : Core.getUID(),
+      tags  : [],
+      notes : [],
+      position : [120, 50],
+      radius : 30,
+      shapeType : "circle",
+      color : "#ff9900"
     }],
     selectedRegion : -1,
 

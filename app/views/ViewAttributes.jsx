@@ -23,6 +23,7 @@ class ViewAttributes extends React.Component {
 
   componentDidMount()
   {
+    Core.addEventListener("attribute-deleted", this.stateChange);
     Core.addEventListener("attribute-created", this.stateChange);
     Core.addEventListener("attribute-selected", this.stateChange);
     Core.addEventListener("attribute-info-changed", this.stateChange);
@@ -30,6 +31,7 @@ class ViewAttributes extends React.Component {
 
   componentWillUnmount()
   {
+    Core.removeEventListener("attribute-deleted", this.stateChange);
     Core.removeEventListener("attribute-created", this.stateChange);
     Core.removeEventListener("attribute-selected", this.stateChange);
     Core.removeEventListener("attribute-info-changed", this.stateChange);

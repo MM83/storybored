@@ -4,40 +4,121 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Core from '../js/Core';
 import MapListItem from './components/MapListItem';
 import ImgSrc from '../assets/images/map.jpg';
-import {
-  StageComponent, BitmapComponent, ContainerComponent, ShapeComponent, TextComponent
-} from "easeljs-react";
+
 
 class ViewWorld extends React.Component {
 
   constructor(props)
   {
     super(props);
-    // console.log("fubfbfs", createjs);
-    //<Route path="/home" component={ViewHome}/>
+    this.startRegionDrag = this.startRegionDrag.bind(this);
+    this.startRegionResize = this.startRegionResize.bind(this);
+    this.mouseDrag = this.mouseDrag.bind(this);
+    this.mouseUp = this.mouseUp.bind(this);
+    this.mouseDragResize = this.mouseDragResize.bind(this);
+    this.mouseUpResize = this.mouseUpResize.bind(this);
     this.state = {
-      image : null
-    };
+      isDragging : false,
+      x : 0, y : 0, px : 0, py : 0
+    }
   }
 
   componentDidMount() {
-  const image = new Image();
-  image.src = ImgSrc;
-  image.onload = () => {
-    this.setState({image});
-  }
-}
 
+  }
+
+  componentWillUnmount()
+  {
+    // createjs.Ticker.removeEventListener("tick", this.handleTick);
+  }
+
+  mouseDrag(e)
+  {
+
+    let x = e.pageX;
+    let y = e.pageY;
+
+    let dx = x - this.state.x;
+    let dy = y - this.state.y;
+
+    this.state.selectedRegion.position[0] += dy;
+    this.state.selectedRegion.position[1] += dx;
+
+    this.setState({
+      x, y
+    })
+  }
+
+  mouseUp()
+  {
+    window.removeEventListener("mousemove", this.mouseDrag);
+    window.removeEventListener("mouseup", this.mouseUp);
+    this.setState({
+      isDragging : false
+    })
+  }
+
+  mouseDragResize(e)
+  {
+
+    let x = e.pageX;
+    let y = e.pageY;
+
+    let dx = x - this.state.x;
+    let dy = y - this.state.y;
+
+    this.state.selectedRegion.radius += dx*2;
+
+    this.setState({
+      x, y
+    })
+  }
+
+  mouseUpResize()
+  {
+    window.removeEventListener("mousemove", this.mouseDragResize);
+    window.removeEventListener("mouseup", this.mouseUpResize);
+    this.setState({
+      isDragging : false
+    })
+  }
+
+  startRegionDrag(region, mouseEvent)
+  {
+    this.state.isDragging = true;
+    this.state.x = mouseEvent.pageX;
+    this.state.y = mouseEvent.pageY;
+    this.state.px = mouseEvent.pageX;
+    this.state.py = mouseEvent.pageY;
+    this.state.selectedRegion = region;
+    this.state.dragTarget = mouseEvent.target;
+    window.addEventListener("mousemove", this.mouseDrag);
+    window.addEventListener("mouseup", this.mouseUp);
+  }
+
+  startRegionResize(region, mouseEvent)
+  {
+    this.state.isDragging = true;
+    this.state.x = mouseEvent.pageX;
+    this.state.y = mouseEvent.pageY;
+    this.state.px = mouseEvent.pageX;
+    this.state.py = mouseEvent.pageY;
+    this.state.selectedRegion = region;
+    this.state.dragTarget = mouseEvent.target;
+    window.addEventListener("mousemove", this.mouseDragResize);
+    window.addEventListener("mouseup", this.mouseUpResize);
+  }
 
   render() {
 
+      let startRegionDrag = this.startRegionDrag;
+      let startRegionResize = this.startRegionResize;
+
       let story = Core.query("get-story");
 
-      let scrollerStyle = {
-        backgroundImage : 'url("'+ ImgSrc + '")'
+      let stageStyle = {
+        position: "absolute"
       }
-
-      console.log("IMAGE", this.state.image);
 
       return (
         <div className="app-panel">
@@ -73,11 +154,42 @@ class ViewWorld extends React.Component {
             </div>
             <div className="world-container">
 
-              <div className="world-scroller" style={scrollerStyle}>
-                <img className="world-backing" src={ImgSrc}></img>
+              <div className="world-scroller">
+                <img className="world-backing" src={ImgSrc}/>
+                  <div className="world-layer world-regions">
+                    {
+                      story.regions.map(function(item, index){
+                        let rStyle = {
+                          position : "absolute",
+                          top : item.position[0],
+                          left : item.position[1],
+                          width: item.radius / 2,
+                          height: item.radius / 2
+                        };
+
+                        return (<div key={index} className="map-region" style={rStyle}
+                        onMouseDown={(e)=>{
+                          startRegionDrag(item, e);
+                        }}
+                        >
+                        <div>{item.name}</div>
+                        <div className="map-region-resize" onMouseDown={(e)=>{
+                            e.preventDefault();
+                            e.stopPropagation();
+                            startRegionResize(item, e);
+                          }}>
+                        </div>
+                      </div>);
+                      })
+                    }
+                  </div>
+              </div>
+
+
+                <div className="world-layer world-labels"></div>
               </div>
             </div>
-          </div>
+
         </div>
       );
   }

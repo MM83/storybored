@@ -25,6 +25,7 @@ class ViewLocations extends React.Component {
   componentDidMount()
   {
     Core.addEventListener("location-created", this.stateChange);
+    Core.addEventListener("location-deleted", this.stateChange);
     Core.addEventListener("location-selected", this.stateChange);
     Core.addEventListener("location-info-changed", this.stateChange);
   }
@@ -32,8 +33,9 @@ class ViewLocations extends React.Component {
   componentWillUnmount()
   {
     Core.removeEventListener("location-created", this.stateChange);
+    Core.removeEventListener("location-deleted", this.stateChange);
     Core.removeEventListener("location-selected", this.stateChange);
-    Core.addEventListener("location-info-changed", this.stateChange);
+    Core.removeEventListener("location-info-changed", this.stateChange);
   }
 
 

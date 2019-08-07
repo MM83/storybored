@@ -89,7 +89,7 @@ class Comp extends React.Component {
 
   addTagToTarget()
   {
-  
+
   }
 
 
@@ -151,6 +151,7 @@ class Comp extends React.Component {
                 for(let i = 0; i < storyTags.length; ++i)
                 {
                   let sTag = storyTags[i];
+
                   if(sTag.guid == item)
                     tag = sTag;
                 }
@@ -170,7 +171,6 @@ class Comp extends React.Component {
                 {
                   availableTags.map((item, index)=>{
                     return <Dropdown.Item key={index} onClick={()=>{
-
                         Core.exec("add-tag-to-target", {
                           tag : item,
                           target : target

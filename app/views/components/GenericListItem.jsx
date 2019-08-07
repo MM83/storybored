@@ -10,6 +10,8 @@ class Comp extends React.Component {
     super(props);
   }
 
+
+
   render() {
 
       let name = this.props.item.name;
@@ -43,7 +45,9 @@ class Comp extends React.Component {
           <div className="generic-list-item-options">
 
             <div>Duplicate</div>
-            <div>Delete</div>
+            <div onClick={()=>{
+                Core.exec("smart-delete-item", this.props.item);
+              }}>Delete</div>
           </div>
         </div>
 

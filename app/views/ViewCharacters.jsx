@@ -23,6 +23,7 @@ class ViewCharacters extends React.Component {
 
   componentDidMount()
   {
+    Core.addEventListener("character-deleted", this.stateChange);
     Core.addEventListener("character-created", this.stateChange);
     Core.addEventListener("character-selected", this.stateChange);
     Core.addEventListener("character-info-changed", this.stateChange);
@@ -30,6 +31,7 @@ class ViewCharacters extends React.Component {
 
   componentWillUnmount()
   {
+    Core.removeEventListener("character-deleted", this.stateChange);
     Core.removeEventListener("character-created", this.stateChange);
     Core.removeEventListener("character-selected", this.stateChange);
     Core.removeEventListener("character-info-changed", this.stateChange);

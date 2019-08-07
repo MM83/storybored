@@ -26,7 +26,7 @@ class ViewStory extends React.Component {
             <h2>Tags</h2>
             <h6>Words or phrases you can use to organise and associate areas of your story.</h6>
             <TagBar target="all"/>
-
+            
             <div className="content-expander">
               <div className="h-spacer"></div>
               <h2>Synopsis</h2>

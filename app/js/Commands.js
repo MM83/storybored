@@ -106,6 +106,7 @@ export default new function Commands()
 
     Core.addCommand("create-character", ()=>{
       let char = {
+        type  : "character",
         name  : "New Character",
         desc  : "",
         guid  : Core.getUID(),
@@ -124,6 +125,7 @@ export default new function Commands()
 
     Core.addCommand("create-item", ()=>{
       let item = {
+        type  : "item",
         name  : "New Item",
         desc  : "",
         guid  : Core.getUID(),
@@ -143,6 +145,7 @@ export default new function Commands()
 
     Core.addCommand("create-location", ()=>{
       let location = {
+        type  : "location",
         name  : "New Location",
         desc  : "",
         guid  : Core.getUID(),
@@ -163,6 +166,7 @@ export default new function Commands()
 
     Core.addCommand("create-event", ()=>{
       let event = {
+        type  : "event",
         name  : "New Event",
         desc  : "",
         guid  : Core.getUID(),
@@ -185,6 +189,7 @@ export default new function Commands()
 
     Core.addCommand("create-region", ()=>{
       let region = {
+        type  : "region",
         name  : "New Region",
         desc  : "",
         guid  : Core.getUID(),
@@ -212,7 +217,7 @@ export default new function Commands()
 
     Core.addCommand("remove-tag-from-target", (data)=>{
       let index = data.target.tags.indexOf(data.tag.guid);
-      console.log("REM INX", index);
+
       data.target.tags.splice(index, 1);
       Core.dispatchEvent("tag-removed-from-target", data.target);
     });
@@ -234,6 +239,7 @@ export default new function Commands()
 
 
 
+
     Core.addCommand("create-note", (data)=>{
       console.log("data", data);
       Core.exec("open-modal", {
@@ -245,6 +251,7 @@ export default new function Commands()
             handler : ()=>{
               Core.exec("close-modal");
               let note = {
+                type  : "note",
                 name : noteTitleRef.current.value,
                 text : noteContentRef.current.value,
                 guid : Core.getUID()
@@ -330,6 +337,76 @@ export default new function Commands()
     Core.addCommand("select-attribute", (index)=>{
       Attributes.selectedAttribute = index;
       Core.dispatchEvent("attribute-selected", index);
+    });
+
+    Core.addCommand("smart-delete-item", (item)=>{
+      let arr, index;
+      switch(item.type){
+        case "character":
+          arr = DataModel.story.characters;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("character-deleted");
+          }
+        break;
+        case "item":
+          arr = DataModel.story.items;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("item-deleted");
+          }
+        break;
+        case "location":
+          arr = DataModel.story.locations;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("location-deleted");
+          }
+        break;
+        case "region":
+          arr = DataModel.story.regions;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("region-deleted");
+          }
+        break;
+        case "event":
+          arr = DataModel.story.events;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("event-deleted");
+          }
+        break;
+        case "attribue":
+          arr = DataModel.story.attributes;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("attribue-deleted");
+          }
+        break;
+        case "note":
+          arr = DataModel.story.notes;
+          index = arr.indexOf(item);
+          if(index != -1)
+          {
+              arr.splice(index, 1);
+              Core.dispatchEvent("note-deleted");
+          }
+        break;
+
+      }
     });
 
 

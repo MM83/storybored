@@ -24,6 +24,7 @@ class ViewRegions extends React.Component {
   componentDidMount()
   {
     Core.addEventListener("region-created", this.stateChange);
+    Core.addEventListener("region-deleted", this.stateChange);
     Core.addEventListener("region-selected", this.stateChange);
     Core.addEventListener("region-info-changed", this.stateChange);
   }
@@ -31,6 +32,7 @@ class ViewRegions extends React.Component {
   componentWillUnmount()
   {
     Core.removeEventListener("region-created", this.stateChange);
+    Core.removeEventListener("region-deleted", this.stateChange);
     Core.removeEventListener("region-selected", this.stateChange);
     Core.removeEventListener("region-info-changed", this.stateChange);
   }
