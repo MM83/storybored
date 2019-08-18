@@ -201,3 +201,28 @@ transform: scale(1.5);
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
+
+.note-list-note
+{
+  background: red;
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem;
+}
+.note-top-bar
+{
+  display: flex;
+  padding: 0.25rem;
+}
+.note-top-bar-title
+{
+  flex-grow: 1;
+}
+.note-top-bar-drop-down
+{
+
+}
+.note-text
+{
+
+}

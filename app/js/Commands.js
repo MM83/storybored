@@ -238,10 +238,20 @@ export default new function Commands()
     }
 
 
+    Core.respond("get-note", (guid)=>{
+      let notes = DataModel.story.notes;
+      for(let note of notes)
+      {
+        if(note.guid == guid)
+          return note;
+      }
+      return false;
+    });
+
 
 
     Core.addCommand("create-note", (data)=>{
-      console.log("data", data);
+
       Core.exec("open-modal", {
         heading : "Create Note",
         body : getNoteContent(),
@@ -250,22 +260,21 @@ export default new function Commands()
             text : "Save Note",
             handler : ()=>{
               Core.exec("close-modal");
+              let target = data.target;
+              // console.log("DATA WHICH IS FUCKING THIS", data);
               let note = {
                 type  : "note",
                 name : noteTitleRef.current.value,
                 text : noteContentRef.current.value,
-                guid : Core.getUID()
+                guid : Core.getUID(),
+                target : target.guid,
+                expandedOnParent : false,
+                expandedInNotes : false
               };
 
-              //Add this note to story notes
-
-
-              console.log("target", data.target, note);
-              // Core.exec("add-note-to-story", {
-              //   name : oteTitleRef.current.value,
-              //   text : noteContentRef.current.value,
-              //   target : data.target
-              // });
+              target.notes.push(note.guid);
+              DataModel.story.notes.push(note);
+              Core.dispatchEvent("note-created", note);
             }
           },{
             text : "Cancel",

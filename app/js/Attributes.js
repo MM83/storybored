@@ -123,7 +123,8 @@ export default new function Attributes()
     let attr = {
       type : type || Types.Binary,
       instances : [],
-      name : name
+      name : name,
+      uid: Core.getUID()
     };
     switch(type)
     {
@@ -153,7 +154,6 @@ export default new function Attributes()
 
     attributes.push(attr);
     attrMap[name] = attr;
-
     return attr;
 
   }

@@ -9,7 +9,6 @@ class ListItemInline extends React.Component {
   {
     super(props);
     this.removeFromStory = this.removeFromStory.bind(this);
-
   }
 
   removeFromStory()
@@ -20,7 +19,6 @@ class ListItemInline extends React.Component {
 
 
   render() {
-
 
         return (
           <div className="tag-inline">

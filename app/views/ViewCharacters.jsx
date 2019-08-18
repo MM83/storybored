@@ -6,6 +6,7 @@ import GenericListItem from './components/GenericListItem';
 import NoteList from './components/NoteList';
 import TagList from './components/TagList';
 import TagBar from './components/TagBar';
+import AttributeBar from './components/AttributeBar';
 // import DataModel from '../js/DataModel';
 
 class ViewCharacters extends React.Component {
@@ -27,6 +28,7 @@ class ViewCharacters extends React.Component {
     Core.addEventListener("character-created", this.stateChange);
     Core.addEventListener("character-selected", this.stateChange);
     Core.addEventListener("character-info-changed", this.stateChange);
+    Core.addEventListener("note-expanded", this.stateChange);
   }
 
   componentWillUnmount()
@@ -35,6 +37,7 @@ class ViewCharacters extends React.Component {
     Core.removeEventListener("character-created", this.stateChange);
     Core.removeEventListener("character-selected", this.stateChange);
     Core.removeEventListener("character-info-changed", this.stateChange);
+    Core.removeEventListener("note-expanded", this.stateChange);
   }
 
   render() {
@@ -93,6 +96,7 @@ class ViewCharacters extends React.Component {
 
                     <h2>Attributes</h2>
                     <h6>Any attributes you wish this character to have</h6>
+                    <AttributeBar  target={selectedCharacter}/>
 
                     <div className="h-spacer"></div>
 
