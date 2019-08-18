@@ -267,7 +267,48 @@ class CreateEditAttribute extends React.Component {
               </InputGroup.Append>
             </InputGroup>
 
+
           </div>)}
+
+          <div className="attr-definitions">
+            <h2>Add to definition of...</h2>
+
+            <div className="attr-class-triplet">
+              <div className="attr-class-row">
+                <h1>Characters</h1>
+                <input type="checkbox"/>
+              </div>
+
+              <div className="attr-class-row">
+                <h1>Items</h1>
+                <input type="checkbox"/>
+              </div>
+
+              <div className="attr-class-row">
+                <h1>Locations</h1>
+                <input type="checkbox"/>
+              </div>
+              <div className="attr-class-row">
+                <h1>Events</h1>
+                <input type="checkbox"/>
+              </div>
+
+              <div className="attr-class-row">
+                <h1>Regions</h1>
+                <input type="checkbox"/>
+              </div>
+              <div className="attr-class-row">
+              </div>
+
+            </div>
+
+            <div className="attr-class-triplet">
+
+            </div>
+
+            <h6>Every object of these classes must have this attribute. </h6>
+            <h6>Existing objects will be assigned the default value.</h6>
+          </div>
 
 
         </div>

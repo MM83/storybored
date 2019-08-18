@@ -1,5 +1,58 @@
 
 .story-scrubber-panel {
-	height: 16rem;
-	background: blue;
+	// height: 16rem;
+	display: flex;
+	flex-direction: column;
+	// background: blue;/
+	border-top: 1px solid #ccc;
+	padding-top: 0.5rem;
+}
+
+
+.story-scrubber-range-panel {
+	display: flex;
+	align-self: stretch;
+		// margin: 0.75rem;
+}
+
+.story-scrubber-slide {
+	flex-grow: 1;
+}
+
+.story-scrubber-range-date {
+	margin: 0.5rem;
+	width: 3rem;
+	font-size: 0.8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.story-scrubber-inputs
+{
+	display: flex;
+}
+.story-scrubber-date-input
+{
+		margin-left: 0.5rem;
+}
+
+.story-scrubber-date-input > h1 {
+	font-size: 0.75rem;
+	margin: 0;
+	margin-bottom: 0.25rem;
+	// text-align: center;
+}
+.story-scrubber-date-input > input {
+	text-align: center;
+	padding: 0.25rem;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+
+}
+.ssdi-two{
+	width: 3rem;
+}
+.ssdi-four{
+	width: 5rem;
 }

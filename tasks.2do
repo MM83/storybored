@@ -1,8 +1,9 @@
-Delete Notes
+
 Add tags to Notes
-Story scrubber
-Update all getUIDs to require a registration object - registerUID
-All delete methods must remove from global UID store
+add attributes to class definitions, update existing
+
+
+
 
 
 

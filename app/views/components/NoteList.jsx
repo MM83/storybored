@@ -44,9 +44,10 @@ class NoteList extends React.Component {
   }
 
   render() {
+
       let notes = this.state.notes;
       let target = this.props.target;
-      console.log("targonoid", target);
+
       return (
         <div className="note-list-container">
           <Button className="add-new-note-button" onClick={()=>{

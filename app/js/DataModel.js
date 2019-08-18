@@ -4,7 +4,30 @@ import Attributes from './Attributes';
 export default new function DataModel()
 {
   let blankStory = {
+    time : {
+      startYear : 1000,
+      lengthInYears : 2000,
+      calendar : [
+        { name : "January", days : 31 },
+        { name : "February", days : 31 },
+        { name : "March", days : 31 },
+        { name : "April", days : 31 },
+        { name : "May", days : 31 },
+        { name : "June", days : 31 },
+        { name : "July", days : 31 },
+        { name : "August", days : 31 },
+        { name : "September", days : 31 },
+        { name : "October", days : 31 },
+        { name : "November", days : 31 },
+        { name : "December", days : 31 }
+      ],
+      hoursInDay : 24,
+      minutesInHour : 60,
+      secondsInMinute : 60
+    },
+
     notes : [],
+
     tags : [
       {
         name : "Sample Tag 1",
@@ -116,10 +139,39 @@ export default new function DataModel()
 
   this.story = {};
 
+  let currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond;
+
+  this.calculateTotalStorySeconds = () =>
+  {
+    let time = this.story.time;
+    console.log("TIMMO", time);
+
+
+    //We need to know how many days are in a year...
+
+    let c = time.calendar;
+    let l = c.length;
+    let dayTally = 0;
+    for(let i = 0; i < l; ++i)
+      dayTally += c[i].days;
+
+    //...then multiply this by how many seconds are in a day...
+
+    let seconds = (time.secondsInMinute * time.minutesInHour * time.hoursInDay) * dayTally;
+
+    //...then multiply this by how many years are in the story
+
+    seconds = Math.round(seconds * time.lengthInYears);
+
+    console.log("TOTAL SECONDS IN STORY", seconds);
+
+  }
+
   this.createNewStory = () =>
   {
     //Clone the base data
     this.story = JSON.parse(JSON.stringify(blankStory));
+    this.calculateTotalStorySeconds();
   }
 
   this.createNewStory();
