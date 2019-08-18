@@ -20,6 +20,7 @@ class NoteList extends React.Component {
   {
     Core.addEventListener("note-created", this.stateChange);
     Core.addEventListener("note-deleted", this.stateChange);
+    // this.stateChange();
   }
 
   componentWillUnmount()
@@ -30,23 +31,24 @@ class NoteList extends React.Component {
 
   stateChange()
   {
-    let targetNotes = this.props.target.notes;
-    let notes = [];
-    for(let i in targetNotes)
-    {
-      let note = Core.query("get-note", targetNotes[i]);
-      if(note)
-        notes.push(note);
-    }
-    this.setState({
-      notes
-    });
+    this.setState({});
   }
 
   render() {
+;
 
-      let notes = this.state.notes;
       let target = this.props.target;
+      let targetNotes = target.notes;
+      let notes = [];
+
+      for(let i in targetNotes)
+      {
+        let note = Core.query("get-note", targetNotes[i]);
+        if(note)
+          notes.push(note);
+      }
+
+      console.log("not attack", targetNotes);
 
       return (
         <div className="note-list-container">
