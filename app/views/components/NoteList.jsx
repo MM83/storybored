@@ -19,11 +19,13 @@ class NoteList extends React.Component {
   componentDidMount()
   {
     Core.addEventListener("note-created", this.stateChange);
+    Core.addEventListener("note-deleted", this.stateChange);
   }
 
   componentWillUnmount()
   {
     Core.removeEventListener("note-created", this.stateChange);
+    Core.removeEventListener("note-deleted", this.stateChange);
   }
 
   stateChange()

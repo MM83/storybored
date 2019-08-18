@@ -204,10 +204,12 @@ transform: scale(1.5);
 
 .note-list-note
 {
-  background: red;
+  // background: red;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
   display: flex;
   flex-direction: column;
-  margin: 0.25rem;
+  margin-top: 0.25rem;
 }
 .note-top-bar
 {
@@ -217,12 +219,46 @@ transform: scale(1.5);
 .note-top-bar-title
 {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  // font-size: 1.5rem;
+  font-weight: 700;
 }
 .note-top-bar-drop-down
 {
 
 }
-.note-text
-{
 
+.note-expanded {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-expanded-text {
+  resize: none;
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  font-weight: 300;
+}
+
+.note-expanded-buttons {
+  margin: 0.25rem;
+  margin-top: none;
+}
+.note-expanded-buttons > button {
+  margin-right: 0.25rem;
+}
+
+.note-top-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  font-weight: 700;
+  margin-right: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+  border: 1px solid #ddd;
 }

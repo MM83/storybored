@@ -156,9 +156,17 @@ h6 {
 	margin-bottom: 1rem;
 }
 
+.main-panel-column {
+	display: flex;
+	flex-direction: column;
+	align-self: stretch;
+	flex-grow: 1;
+}
+
 @import "synopsis.scss";
 @import "nav-panel.scss";
 @import "generic-panel.scss";
 @import "components.scss";
 @import "modal.scss";
 @import "world.scss";
+@import "scrubber.scss";

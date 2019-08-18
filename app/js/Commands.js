@@ -9,6 +9,22 @@ export default new function Commands()
 {
 
 
+    Core.respond("get-by-uid", (uid)=>{
+      let story = DataModel.story;
+      let arrays = [story.characters, story.items];
+      let l = arrays.length;
+      for(let i = 0; i < l ; ++i)
+      {
+        let array = arrays[i];
+        let l2 = array.length;
+        for(let j = 0; j < l2; ++j)
+        {
+          let item = array[j];
+          if(item.guid == uid)
+            return item;
+        }
+      }
+    });
 
     Core.addCommand("create-tag", (data)=>{
       let tag = {
@@ -184,9 +200,6 @@ export default new function Commands()
     });
 
 
-
-
-
     Core.addCommand("create-region", ()=>{
       let region = {
         type  : "region",
@@ -248,6 +261,29 @@ export default new function Commands()
       return false;
     });
 
+    Core.addCommand("delete-note", (note)=>{
+
+      let storyNotes = DataModel.story.notes;
+      let l = storyNotes.length;
+      for(let i = 0; i < l; ++i)
+      {
+        let sNote = storyNotes[i];
+        if(sNote.guid == note.guid){
+          storyNotes.splice(i, 1);
+          break;
+        }
+      }
+
+      if(note.target)
+      {
+        let parent = Core.query("get-by-uid", note.target);
+        let index = parent.notes.indexOf(note.guid);
+        
+        if(index != -1)
+          parent.notes.splice(index, 1);
+      }
+      Core.dispatchEvent("note-deleted", note);
+    });
 
 
     Core.addCommand("create-note", (data)=>{

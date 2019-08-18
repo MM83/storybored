@@ -35,17 +35,20 @@ class ViewApp extends React.Component {
           <div className="main-panel">
             <NavPanel/>
             <HashRouter>
-              <Switch>
-                <Route path="/synopsis" component={ViewStory}/>
-                <Route path="/notes" component={ViewNotes}/>
-                <Route path="/characters" component={ViewCharacters}/>
-                <Route path="/locations" component={ViewLocations}/>
-                <Route path="/events" component={ViewEvents}/>
-                <Route path="/items" component={ViewItems}/>
-                <Route path="/regions" component={ViewRegions}/>
-                <Route path="/attributes" component={ViewAttributes}/>
-                <Route path="/world" component={ViewWorld}/>
-              </Switch>
+              <div className="main-panel-column">
+                <Switch>
+                  <Route path="/synopsis" component={ViewStory}/>
+                  <Route path="/notes" component={ViewNotes}/>
+                  <Route path="/characters" component={ViewCharacters}/>
+                  <Route path="/locations" component={ViewLocations}/>
+                  <Route path="/events" component={ViewEvents}/>
+                  <Route path="/items" component={ViewItems}/>
+                  <Route path="/regions" component={ViewRegions}/>
+                  <Route path="/attributes" component={ViewAttributes}/>
+                  <Route path="/world" component={ViewWorld}/>
+                </Switch>
+                <div className="story-scrubber-panel"></div>
+              </div>
             </HashRouter>
           </div>
           <ViewModal/>
