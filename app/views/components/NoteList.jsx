@@ -38,6 +38,7 @@ class NoteList extends React.Component {
 ;
 
       let target = this.props.target;
+      
       let targetNotes = target.notes;
       let notes = [];
 

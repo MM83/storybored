@@ -146,7 +146,8 @@ export default new function Commands()
         desc  : "",
         guid  : Core.getUID(),
         tags  : [],
-        notes : []
+        notes : [],
+        attributes : []
       };
       DataModel.story.items.push(item);
       DataModel.story.selectedItem = DataModel.story.items.length - 1;
@@ -166,7 +167,8 @@ export default new function Commands()
         desc  : "",
         guid  : Core.getUID(),
         tags  : [],
-        notes : []
+        notes : [],
+        attributes : []
       };
       DataModel.story.locations.push(location);
       DataModel.story.selectedLocation = DataModel.story.locations.length - 1;
@@ -207,7 +209,8 @@ export default new function Commands()
         desc  : "",
         guid  : Core.getUID(),
         tags  : [],
-        notes : []
+        notes : [],
+        attributes : []
       };
       DataModel.story.regions.push(region);
       DataModel.story.selectedRegion = DataModel.story.regions.length - 1;

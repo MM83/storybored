@@ -6,6 +6,7 @@ import GenericListItem from './components/GenericListItem';
 import NoteList from './components/NoteList';
 import TagList from './components/TagList';
 import TagBar from './components/TagBar';
+import AttributeBar from './components/AttributeBar';
 
 class ViewItems extends React.Component {
 
@@ -27,6 +28,7 @@ class ViewItems extends React.Component {
     Core.addEventListener("item-deleted", this.stateChange);
     Core.addEventListener("item-selected", this.stateChange);
     Core.addEventListener("item-info-changed", this.stateChange);
+    Core.addEventListener("note-expanded", this.stateChange);
   }
 
   componentWillUnmount()
@@ -35,6 +37,7 @@ class ViewItems extends React.Component {
     Core.removeEventListener("item-deleted", this.stateChange);
     Core.removeEventListener("item-selected", this.stateChange);
     Core.removeEventListener("item-info-changed", this.stateChange);
+    Core.removeEventListener("note-expanded", this.stateChange);
   }
 
   render() {
@@ -99,10 +102,16 @@ class ViewItems extends React.Component {
 
                     <div className="h-spacer"></div>
 
+                    <h2>Attributes</h2>
+                    <h6>Any attributes you wish this character to have</h6>
+                    <AttributeBar  target={selectedItem}/>
+
+                    <div className="h-spacer"></div>
+
 
                     <h2>Notes</h2>
                     <h6>Any notes you wish to make about this item</h6>
-                    <NoteList/>
+                    <NoteList target={selectedItem}/>
 
                   </div>
                 )

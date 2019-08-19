@@ -111,7 +111,7 @@ class ViewLocations extends React.Component {
 
                     <h2>Notes</h2>
                     <h6>Any notes you wish to make about this location</h6>
-                    <NoteList/>
+                    <NoteList  target={selectedLocation}/>
 
                   </div>
                 )
