@@ -52,3 +52,23 @@
 .ssdi-four{
 	width: 5rem;
 }
+
+.scrubber-button-panel
+{
+		display: flex;
+		// flex-direction: column;
+		margin-left: 0.5rem;
+		justify-content: center;
+		align-items: flex-end;
+}
+
+.scrubber-button-panel > button
+{
+	font-size: 0.675rem;
+	font-weight: 700;
+	margin-right: 0.5rem;
+	padding: 0.25rem;
+	height: 2rem;
+		// margin-bottom: 0.5rem;
+		width: 4rem;
+}

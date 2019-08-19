@@ -14,6 +14,7 @@ class HorizontalSplitter extends React.Component {
       lastY : 0
     };
     this.containerRef = React.createRef();
+    this.barRef = React.createRef();
     this.mouseUp = this.mouseUp.bind(this);
     this.mouseDown = this.mouseDown.bind(this);
     this.mouseDrag = this.mouseDrag.bind(this);
@@ -67,15 +68,23 @@ class HorizontalSplitter extends React.Component {
       height : (this.state.divide * 100).toFixed(2) + "%"
     };
 
+    let oh = this.barRef.current ? this.barRef.current.offsetHeight : 0;
+
+    let percString = ((100) - this.state.divide * 100).toFixed(2) + "%";
+
+    let bottomStyle = {
+      height : "calc(" + percString + " - " + oh + "px)"
+    };
+
       return (
         <div className="h-split" ref={this.containerRef}>
           <div className="h-split-panel hsp0" style={topStyle}>
             { this.props.children[0] }
           </div>
-          <div className="h-split-bar" onMouseDown={(e)=>{
+          <div className="h-split-bar" ref={this.barRef} onMouseDown={(e)=>{
             this.mouseDown(e);
           }}></div>
-          <div className="h-split-panel hsp1">
+        <div className="h-split-panel hsp1" style={bottomStyle}>
             { this.props.children[1] }
           </div>
         </div>

@@ -7,6 +7,7 @@ import NoteList from './components/NoteList';
 import TagList from './components/TagList';
 import TagBar from './components/TagBar';
 import HorizontalSplitter from './components/HorizontalSplitter';
+import CustomScroller from './components/CustomScroller';
 
 class ViewAttributes extends React.Component {
 
@@ -39,7 +40,7 @@ class ViewAttributes extends React.Component {
 
           <HorizontalSplitter>
             <div className="h-split-parent">
-              fdsfds
+              <CustomScroller/>
             </div>
             <div className="h-split-parent">
               <div className="story-scrubber-range-panel">
@@ -69,10 +70,15 @@ class ViewAttributes extends React.Component {
                       <h1>Second</h1><input className="ssdi-two" type="number"/>
                     </div>
                 </div>
-
-
-
+                <div className="scrubber-button-panel">
+                  <Button>Focus</Button>
+                  <Button>Calendar</Button>
+                  <Button>Time</Button>
+                </div>
               </div>
+
+              <CustomScroller/>
+
             </div>
           </HorizontalSplitter>
 
