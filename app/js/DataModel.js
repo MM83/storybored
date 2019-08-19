@@ -241,7 +241,7 @@ export default new function DataModel()
 
 
     this.defineAttribute({
-      name : "Demo Float",
+      name : "Demo Binary",
       type : AttributeTypes.Binary,
       min : -10,
       max : 10,

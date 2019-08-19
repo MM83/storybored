@@ -13,7 +13,17 @@
 	transition: 0.5s;
 	text-decoration: none;
 	padding: 1em;
-	// font-size: 0.8em;
+	font-size: 0.8em;
+	padding-left: 2rem;
+}
+
+.nav-panel > h1 {
+	font-weight: 300;
+	font-size: 1em;
+	margin: 0.5rem;
+	margin-top: 1rem;
+	margin-left: 0.75rem;
+	padding: 0;
 }
 
 .nav-panel > a:hover {

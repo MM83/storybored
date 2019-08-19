@@ -267,6 +267,34 @@ class CreateEditAttribute extends React.Component {
               </InputGroup.Append>
             </InputGroup>
 
+            {
+              (this.state.listItems.length > 0) && (<div className="h-spacer"></div>)
+            }
+
+            {
+              (this.state.listItems.length > 0) && (
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>Default Value</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <DropdownButton
+                    as={InputGroup.Append}
+                    title={this.state.listItems[+this.state.defaultValue]}
+                  >
+                  {
+                    this.state.listItems.map((item, index)=>{
+                      return (<Dropdown.Item eventKey={index} key={index}>{item}</Dropdown.Item>);
+                    })
+                  }
+                  </DropdownButton>
+                </InputGroup>
+
+
+              )
+            }
+
+
+
 
           </div>)}
 

@@ -13,15 +13,19 @@ class ViewApp extends React.Component {
   render() {
       return (
         <div className="nav-panel">
+          <h1>Properties</h1>
           <a href="#/synopsis">Story</a>
           <a href="#/notes">Notes</a>
           <a href="#/attributes">Attributes</a>
+          <h1>Actors</h1>
           <a href="#/characters">Characters</a>
           <a href="#/items">Items</a>
+          <h1>Space</h1>
           <a href="#/locations">Locations</a>
-          <a href="#/events">Events</a>
           <a href="#/regions">Regions</a>
           <a href="#/world">World</a>
+          <h1>Time</h1>  
+          <a href="#/events">Events</a>
           <a href="#/timeline">Timeline</a>
         </div>
       );
