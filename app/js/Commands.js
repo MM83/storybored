@@ -1,7 +1,6 @@
 import Core from './Core';
 import React from 'react';
 import DataModel from './DataModel';
-import Attributes from './Attributes';
 import CreateEditAttribute from '../views/modal/CreateEditAttribute';
 import { Button, InputGroup, FormControl, Dropdown, DropdownButton } from 'react-bootstrap';
 
@@ -127,7 +126,8 @@ export default new function Commands()
         desc  : "",
         guid  : Core.getUID(),
         tags  : [],
-        notes : []
+        notes : [],
+        attributes : []
       };
       DataModel.story.characters.push(char);
       DataModel.story.selectedCharacter = DataModel.story.characters.length - 1;
@@ -278,7 +278,7 @@ export default new function Commands()
       {
         let parent = Core.query("get-by-uid", note.target);
         let index = parent.notes.indexOf(note.guid);
-        
+
         if(index != -1)
           parent.notes.splice(index, 1);
       }
@@ -344,44 +344,72 @@ export default new function Commands()
           }
         ]
       });
+    });
 
+    Core.respond("get-attribute-by-uid", (uid)=>{
+      let a = DataModel.attrList
+      let l = a.length;
+      for(let i = 0; i < l; ++i)
+      {
+        let attr = a[i];
+        if(attr.uid == uid)
+          return attr;
+      }
+    });
 
+    Core.addCommand("add-attribute-to-target", (data)=>{
+      // console.log("ADD ATTR TO TARGET", data);
+      let attr = data.attribute;
+      let targ = data.target;
+      let instance = {
+        uid : Core.getUID(),
+        ref : attr.uid,
+        initialValue : attr.defaultValue,
+        keyframes : [],
+        type : targ.type
+      };
+      attr.references.push(instance.uid);
+      targ.attributes.push(instance);
+      Core.dispatchEvent("attribute-added-to-target", targ);
     });
 
 
-
     Core.addCommand("create-attribute", (props)=>{
-      let type = Attributes.types.FloatRange;
+      let type = DataModel.attrTypes.FloatRange;
       let defaultValue = props.defaultValue;
       switch(+props.typeIndex)
       {
         case 0:
-        type = Attributes.types.FloatRange;
+        type = DataModel.attrTypes.FloatRange;
         break;
         case 1:
-        type = Attributes.types.IntegerRange;
+        type = DataModel.attrTypes.IntegerRange;
         break;
         case 2:
         defaultValue = props.defaultBin;
-        type = Attributes.types.Binary;
+        type = DataModel.attrTypes.Binary;
         break;
         case 3:
         defaultValue = 0;
-        type = Attributes.types.Set;
+        type = DataModel.attrTypes.Set;
         break;
       }
       props.type = type;
       props.default = defaultValue;
       props.set = props.listItems;
       console.log("props name", props);
-      let attr = Attributes.defineAttribute(props);
+      let attr = DataModel.defineAttribute(props);
       Core.dispatchEvent("attribute-created", attr);
       Core.exec("close-modal");
     });
 
     Core.addCommand("select-attribute", (index)=>{
-      Attributes.selectedAttribute = index;
+      DataModel.selectedAttribute = index;
       Core.dispatchEvent("attribute-selected", index);
+    });
+
+    Core.respond("get-attributes", ()=>{
+      return DataModel.attrList;
     });
 
     Core.addCommand("smart-delete-item", (item)=>{
@@ -432,13 +460,13 @@ export default new function Commands()
               Core.dispatchEvent("event-deleted");
           }
         break;
-        case "attribue":
+        case "attribute":
           arr = DataModel.story.attributes;
           index = arr.indexOf(item);
           if(index != -1)
           {
               arr.splice(index, 1);
-              Core.dispatchEvent("attribue-deleted");
+              Core.dispatchEvent("attribute-deleted");
           }
         break;
         case "note":

@@ -41,9 +41,9 @@ class ViewAttributes extends React.Component {
 
   render() {
 
-      let attr = Core.query("get-attributes");
-      let list = attr.list;
-      let selectedIndex = attr.selectedAttribute;
+      let list = Core.query("get-attributes");
+      
+      let selectedIndex = -1;
       let selected = list[selectedIndex];
 
       return (

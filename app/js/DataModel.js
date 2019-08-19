@@ -1,5 +1,4 @@
 import Core from './Core';
-import Attributes from './Attributes';
 
 export default new function DataModel()
 {
@@ -135,8 +134,6 @@ export default new function DataModel()
 
   };
 
-  this.attributes = Attributes;
-
   this.story = {};
 
   let currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond;
@@ -180,9 +177,108 @@ export default new function DataModel()
     return this.story;
   });
 
-  Core.respond("get-attributes", ()=>{
-    return Attributes;
-  });
+
+    const AttributeTypes = {
+      FloatRange : 0,
+      IntegerRange : 1,
+      Set : 2,
+      Binary : 3
+    };
+
+    this.attrTypes = AttributeTypes;
+
+    let attributes = [];
+    let attrMap = {};
+
+    this.attrList = attributes;
+
+    this.selectedAttribute = -1;
+
+    this.defineAttribute = (props) =>
+    {
+      let name = props.name;
+      let type = props.type || AttributeTypes.Binary;
+      let attr = {
+        type : type || AttributeTypes.Binary,
+        instances : [],
+        name : name,
+        uid: Core.getUID()
+      };
+      switch(type)
+      {
+        case AttributeTypes.FloatRange:
+          attr.limited = !!props.limited;
+          attr.defaultValue = +(props.default || 0);
+          attr.min = +(props.min || 0);
+          attr.max = +(props.max || 0);
+        break;
+        case AttributeTypes.IntegerRange:
+          attr.limited = !!props.limited;
+          attr.defaultValue = Math.round(+props.default || 0);
+          attr.min = Math.round(+props.min || 0);
+          attr.max = Math.round(+props.max || 0);
+        break;
+        case AttributeTypes.Set:
+          attr.defaultValue = props.default || 0;
+          attr.set = props.set || [];
+        break;
+        case AttributeTypes.Binary:
+          attr.defaultValue = !!props.default;
+        break;
+      }
+
+      // attr.instantiate = instantiate;
+
+      attr.references = [];
+
+
+      attributes.push(attr);
+      attrMap[name] = attr;
+
+      return attr;
+
+    }
+
+
+    this.defineAttribute({
+      name : "Demo Float",
+      type : AttributeTypes.Binary,
+      min : -10,
+      max : 10,
+      default : 3,
+      limited : true
+    });
+
+
+    this.defineAttribute({
+      name : "Demo Set",
+      type : AttributeTypes.Set,
+      default : 1,
+      set : [
+        "Chinse", "Panse", "Fense"
+      ]
+    });
+
+    this.defineAttribute({
+      name : "Demo Float",
+      type : AttributeTypes.FloatRange,
+      default : 1,
+      min : 0,
+      max : 10,
+      limited : true
+    });
+
+
+
+
+
+
+
+
+  window.dump = ()=>
+  {
+    console.log(this.story);
+  }
 
 
 }
