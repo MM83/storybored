@@ -35,10 +35,9 @@ class NoteList extends React.Component {
   }
 
   render() {
-;
+
 
       let target = this.props.target;
-      
       let targetNotes = target.notes;
       let notes = [];
 

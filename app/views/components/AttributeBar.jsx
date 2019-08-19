@@ -43,6 +43,8 @@ class AttributeBar extends React.Component {
       let target = this.props.target;
       let attrs = target.attributes;
 
+      console.log("TARGET", target);
+
       return (
         <div className="tag-form-input">
           <div className="attr-form-list">

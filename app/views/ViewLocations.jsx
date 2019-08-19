@@ -6,6 +6,7 @@ import GenericListItem from './components/GenericListItem';
 import NoteList from './components/NoteList';
 import TagList from './components/TagList';
 import TagBar from './components/TagBar';
+import AttributeBar from './components/AttributeBar';
 
 class ViewLocations extends React.Component {
 
@@ -28,6 +29,7 @@ class ViewLocations extends React.Component {
     Core.addEventListener("location-deleted", this.stateChange);
     Core.addEventListener("location-selected", this.stateChange);
     Core.addEventListener("location-info-changed", this.stateChange);
+    Core.addEventListener("note-expanded", this.stateChange);
   }
 
   componentWillUnmount()
@@ -36,6 +38,7 @@ class ViewLocations extends React.Component {
     Core.removeEventListener("location-deleted", this.stateChange);
     Core.removeEventListener("location-selected", this.stateChange);
     Core.removeEventListener("location-info-changed", this.stateChange);
+    Core.removeEventListener("note-expanded", this.stateChange);
   }
 
 
@@ -88,7 +91,13 @@ class ViewLocations extends React.Component {
                     <h6>The  parent region, determined on map screen</h6>
                       <FormControl className="no-flex-shrink" value={"No current region"} disabled></FormControl>
 
+                    <div className="h-spacer"></div>
 
+                    <h2>Attributes</h2>
+                    <h6>Any attributes you wish this character to have</h6>
+                    <AttributeBar  target={selectedLocation}/>
+
+                    <div className="h-spacer"></div>
 
 
                     <h2>Tags</h2>

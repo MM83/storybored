@@ -66,18 +66,21 @@ export default new function DataModel()
         name  : "Minas Tirith",
         desc  : "",
         guid  : Core.getUID(),
+        attributes : [],
         tags  : [],
         notes : []
       },{
         name  : "Rohan",
         desc  : "",
         guid  : Core.getUID(),
+        attributes : [],
         tags  : [],
         notes : []
       },{
         name  : "That other one",
         desc  : "",
         guid  : Core.getUID(),
+        attributes : [],
         tags  : [],
         notes : []
       }
@@ -94,6 +97,7 @@ export default new function DataModel()
       tags  : [],
       notes : [],
       position : [20, 50],
+      attributes : [],
       radius : 100,
       shapeType : "circle",
       color : "#0099ff"
@@ -104,6 +108,7 @@ export default new function DataModel()
       tags  : [],
       notes : [],
       position : [120, 50],
+      attributes : [],
       radius : 30,
       shapeType : "circle",
       color : "#ff9900"

@@ -6,6 +6,7 @@ import GenericListItem from './components/GenericListItem';
 import NoteList from './components/NoteList';
 import TagList from './components/TagList';
 import TagBar from './components/TagBar';
+import AttributeBar from './components/AttributeBar';
 
 class ViewRegions extends React.Component {
 
@@ -27,6 +28,7 @@ class ViewRegions extends React.Component {
     Core.addEventListener("region-deleted", this.stateChange);
     Core.addEventListener("region-selected", this.stateChange);
     Core.addEventListener("region-info-changed", this.stateChange);
+    Core.addEventListener("note-expanded", this.stateChange);
   }
 
   componentWillUnmount()
@@ -35,6 +37,7 @@ class ViewRegions extends React.Component {
     Core.removeEventListener("region-deleted", this.stateChange);
     Core.removeEventListener("region-selected", this.stateChange);
     Core.removeEventListener("region-info-changed", this.stateChange);
+    Core.removeEventListener("note-expanded", this.stateChange);
   }
 
 
@@ -97,12 +100,19 @@ class ViewRegions extends React.Component {
                     }}>
                     </textarea>
 
+
+                    <div className="h-spacer"></div>
+
+                    <h2>Attributes</h2>
+                    <h6>Any attributes you wish this character to have</h6>
+                    <AttributeBar  target={selectedRegion}/>
+
                     <div className="h-spacer"></div>
 
 
                     <h2>Notes</h2>
                     <h6>Any notes you wish to make about this region</h6>
-                    <NoteList/>
+                    <NoteList target={selectedRegion}/>
 
                   </div>
                 )
