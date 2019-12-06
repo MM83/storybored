@@ -321,61 +321,55 @@ transform: scale(1.5);
 
 
 .custom-scroller-container {
-
   flex-grow: 1;
   flex-shrink: 0;
   align-self: stretch;
   display: flex;
   flex-direction: column;
   background: yellow;
-  // margin-bottom: 0.5rem;
+  position: relative;
 }
 
-.custom-scroller-h-content {
-  background: blue;
-  align-self: stretch;
-  flex-grow: 1;
-  flex-shrink: 0;
-  display: flex;
-}
-
-.custom-scroller-h-bar {
-  height: 2vh;
-  flex-shrink: 0;
-  flex-grow: 0;
-  background: red;
-  align-self: stretch;
-}
-
-.custom-scroller-v-content {
-  background: green;
-  flex-grow: 1;
-  flex-shrink: 0;
-}
-
-.custom-scroller-v-bar {
-  width: 2vh;
-  flex-shrink: 0;
-  flex-grow: 0;
+.custom-scroller-content
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 1rem;
+  right: 1rem;
   background: orange;
-  align-self: stretch;
-
+}
+.custom-scroller-bottom-scroller
+{
+  position: absolute;
+  bottom: 0;
+  height: 1rem;
+  left: 0;
+  right: 1rem;
+  background: green;
+}
+.custom-scroller-left-scroller
+{
+  position: absolute;
+  top: 0;
+  width: 1rem;
+  right: 0;
+  bottom: 1rem;
+  background: green;
+}
+.custom-scroller-corner
+{
+  position: absolute;
+  bottom: 0;
+  width: 1rem;
+  height: 1rem;
+  right: 0;
+  background: red;
 }
 
-.custom-scroller-range {
-  background: purple;
-  flex-grow: 1;
-  align-self: stretch;
-}
-
-.custom-scroller-button {
-  width: 2vh;
-  height: 2vh;
-  background: violet;
-}
-
-.custom-scroller-corner-button {
-  width: 2vh;
-  height: 2vh;
-  background: white;
+.custom-scroller-drag {
+  background: red;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
 }

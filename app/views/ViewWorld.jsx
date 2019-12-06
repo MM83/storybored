@@ -4,6 +4,13 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Core from '../js/Core';
 import MapListItem from './components/MapListItem';
 import ImgSrc from '../assets/images/map.jpg';
+const OrbitControls = require('three-orbitcontrols');
+import
+{
+  Camera, Scene, WebGLRenderer, PerspectiveCamera, PlaneGeometry,
+  CubeGeometry, MeshPhysicalMaterial, Mesh, PointLight, MeshPhongMaterial, MeshBasicMaterial,
+  Shape, ExtrudeGeometry
+} from 'three';
 
 
 class ViewWorld extends React.Component {
@@ -11,108 +18,85 @@ class ViewWorld extends React.Component {
   constructor(props)
   {
     super(props);
-    this.startRegionDrag = this.startRegionDrag.bind(this);
-    this.startRegionResize = this.startRegionResize.bind(this);
-    this.mouseDrag = this.mouseDrag.bind(this);
-    this.mouseUp = this.mouseUp.bind(this);
-    this.mouseDragResize = this.mouseDragResize.bind(this);
-    this.mouseUpResize = this.mouseUpResize.bind(this);
-    this.state = {
-      isDragging : false,
-      x : 0, y : 0, px : 0, py : 0
-    }
+    this.containerRef = React.createRef();
+    this.canvasRef = React.createRef();
+
   }
 
   componentDidMount() {
+    let cRef = this.containerRef.current;
+    this.camera = new PerspectiveCamera( 45, cRef.offsetWidth / cRef.offsetHeight, 0.1, 1000 );
+    this.scene = new Scene();
 
+    this.mesh = new Mesh
+    (
+      new PlaneGeometry(1000, 1000, 30, 30),
+      new MeshPhysicalMaterial
+      (
+        {
+          color : 0xFFFFFF,
+          // wireframe: true
+        }
+      )
+    );
+    this.light = new PointLight( 0xffffff, 1, 1000, 2);
+    this.light.position.set(20, 100, 40);
+    this.scene.add(this.light);
+    this.mesh.position.set(0, 0, 0);
+    this.mesh.rotation.set(-Math.PI/2, 0, 0);
+    this.scene.add(this.mesh);
+
+    let cube = new Mesh(new CubeGeometry(2, 2, 2), new MeshPhysicalMaterial({ color : 0xaf3fff }));
+    this.scene.add(cube);
+
+    this.camera.position.z = 10;
+    this.camera.position.y = 3;
+    this.renderer = new WebGLRenderer({
+      canvas : this.canvasRef.current
+    });
+    this.domElement = this.renderer.domElement;
+    this.mounted = true;
+    let r = this.renderer;
+
+    var heartShape = new Shape();
+
+heartShape.moveTo( 25, 25 );
+heartShape.lineTo( 25, 25, 20, 0, 0, 0 );
+heartShape.lineTo( 30, 0, 30, 35,30,35 );
+heartShape.lineTo( 30, 55, 10, 77, 25, 95 );
+heartShape.lineTo( 60, 77, 80, 55, 80, 35 );
+heartShape.lineTo( 80, 35, 80, 0, 50, 0 );
+heartShape.lineTo( 35, 0, 25, 25, 25, 25 );
+
+var extrudeSettings = { amount: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+var geometry = new ExtrudeGeometry( heartShape, extrudeSettings );
+
+var mesh = new Mesh( geometry, new MeshPhysicalMaterial() );
+this.scene.add(mesh);
+
+    // var controls = new OrbitControls( this.camera, this.domElement );
+    const controls = new OrbitControls(this.camera, this.domElement)
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    // controls.enableZoom = false;
+
+    let f = ()=>{
+      if(this.mounted){
+        r.render(this.scene, this.camera);
+        requestAnimationFrame(f);
+      }
+    }
+    f();
   }
 
   componentWillUnmount()
   {
-    // createjs.Ticker.removeEventListener("tick", this.handleTick);
+    this.mounted = false;
   }
 
-  mouseDrag(e)
-  {
-
-    let x = e.pageX;
-    let y = e.pageY;
-
-    let dx = x - this.state.x;
-    let dy = y - this.state.y;
-
-    this.state.selectedRegion.position[0] += dy;
-    this.state.selectedRegion.position[1] += dx;
-
-    this.setState({
-      x, y
-    })
-  }
-
-  mouseUp()
-  {
-    window.removeEventListener("mousemove", this.mouseDrag);
-    window.removeEventListener("mouseup", this.mouseUp);
-    this.setState({
-      isDragging : false
-    })
-  }
-
-  mouseDragResize(e)
-  {
-
-    let x = e.pageX;
-    let y = e.pageY;
-
-    let dx = x - this.state.x;
-    let dy = y - this.state.y;
-
-    this.state.selectedRegion.radius += dx*2;
-
-    this.setState({
-      x, y
-    })
-  }
-
-  mouseUpResize()
-  {
-    window.removeEventListener("mousemove", this.mouseDragResize);
-    window.removeEventListener("mouseup", this.mouseUpResize);
-    this.setState({
-      isDragging : false
-    })
-  }
-
-  startRegionDrag(region, mouseEvent)
-  {
-    this.state.isDragging = true;
-    this.state.x = mouseEvent.pageX;
-    this.state.y = mouseEvent.pageY;
-    this.state.px = mouseEvent.pageX;
-    this.state.py = mouseEvent.pageY;
-    this.state.selectedRegion = region;
-    this.state.dragTarget = mouseEvent.target;
-    window.addEventListener("mousemove", this.mouseDrag);
-    window.addEventListener("mouseup", this.mouseUp);
-  }
-
-  startRegionResize(region, mouseEvent)
-  {
-    this.state.isDragging = true;
-    this.state.x = mouseEvent.pageX;
-    this.state.y = mouseEvent.pageY;
-    this.state.px = mouseEvent.pageX;
-    this.state.py = mouseEvent.pageY;
-    this.state.selectedRegion = region;
-    this.state.dragTarget = mouseEvent.target;
-    window.addEventListener("mousemove", this.mouseDragResize);
-    window.addEventListener("mouseup", this.mouseUpResize);
-  }
 
   render() {
-
-      let startRegionDrag = this.startRegionDrag;
-      let startRegionResize = this.startRegionResize;
 
       let story = Core.query("get-story");
 
@@ -123,73 +107,13 @@ class ViewWorld extends React.Component {
       return (
         <div className="app-panel">
           <div className="generic-panel">
-            <div className="generic-list">
 
-              <div className="generic-list-expander">
-                <div className="generic-list-scroller">
-                  <h2>Locations</h2>
-                  {
-                    story.locations.map((item, index)=>{
-                      return <MapListItem key={index} item={item} type="location"/>
-                    })
-                  }
-                  <h2>Regions</h2>
-                  {
-                    story.regions.map((item, index)=>{
-                      return <MapListItem key={index} item={item} type="region"/>
-                    })
-                  }
-                  <h2>Annotations</h2>
-                  <h2>Shapes</h2>
+            <div ref={this.containerRef} className="world-container">
 
-                </div>
-              </div>
-
-              <div className="world-toolset">
-                <Button>Add Shape</Button>
-                <Button>Add Annotation</Button>
-                <Button>Upload Map Image</Button>
-              </div>
+              <canvas ref={this.canvasRef} className="world-canvas" width="800" height="600"></canvas>
 
             </div>
-            <div className="world-container">
-
-              <div className="world-scroller">
-                <img className="world-backing" src={ImgSrc}/>
-                  <div className="world-layer world-regions">
-                    {
-                      story.regions.map(function(item, index){
-                        let rStyle = {
-                          position : "absolute",
-                          top : item.position[0],
-                          left : item.position[1],
-                          width: item.radius / 2,
-                          height: item.radius / 2
-                        };
-
-                        return (<div key={index} className="map-region" style={rStyle}
-                        onMouseDown={(e)=>{
-                          startRegionDrag(item, e);
-                        }}
-                        >
-                        <div>{item.name}</div>
-                        <div className="map-region-resize" onMouseDown={(e)=>{
-                            e.preventDefault();
-                            e.stopPropagation();
-                            startRegionResize(item, e);
-                          }}>
-                        </div>
-                      </div>);
-                      })
-                    }
-                  </div>
-              </div>
-
-
-                <div className="world-layer world-labels"></div>
-              </div>
-            </div>
-
+          </div>
         </div>
       );
   }

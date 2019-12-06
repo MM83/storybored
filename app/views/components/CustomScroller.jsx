@@ -7,33 +7,19 @@ class Comp extends React.Component {
   constructor(props)
   {
     super(props);
-    //<Route path="/home" component={ViewHome}/>
   }
-
-  // <div className="custom-scroller-h-content">
-  //   <div className="custom-scroller-v-content"></div>
-  //   <div className="custom-scroller-v-bar"></div>
-  // </div>
-  // <div className="custom-scroller-h-bar"></div>
-
 
   render() {
       return (
         <div className="custom-scroller-container">
-          <div className="custom-scroller-h-content">
-            <div className="custom-scroller-v-content"></div>
-            <div className="custom-scroller-v-bar">
-              <div className="custom-scroller-range">
-                <div className="custom-scroller-button">B</div>
-              </div>
-            </div>
+          <div className="custom-scroller-content"></div>
+          <div className="custom-scroller-bottom-scroller">
+            <div className="custom-scroller-drag"></div>
           </div>
-          <div className="custom-scroller-h-bar">
-            <div className="custom-scroller-range">
-              <div className="custom-scroller-button">B</div>
-            </div>
-            <div className="custom-scroller-corner-button"></div>
+          <div className="custom-scroller-left-scroller">
+            <div className="custom-scroller-drag"></div>
           </div>
+          <div className="custom-scroller-corner"></div>
         </div>
 
       );

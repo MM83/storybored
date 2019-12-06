@@ -28,15 +28,6 @@ class AttributeBar extends React.Component {
     Core.removeEventListener("attribute-added-to-target", this.stateChange);
   }
 
-//   <div className="attr-form-item">
-//     <div className="attr-form-name">Health</div>
-//     <div className="attr-form-label">Initial Value:</div>
-//     <div className="attr-form-init-value">100</div>
-//     <div className="flex-grow"></div>
-//     <Button variant="outline-primary">Timeline</Button>
-// </div>
-
-
   render() {
 
       let list = Core.query("get-attributes");
@@ -122,7 +113,11 @@ class AttributeBar extends React.Component {
 
                     <InputGroup.Append>
                       <Button variant="outline-primary">Timeline...</Button>
-                      <Button variant="outline-danger">Delete</Button>
+                      <Button variant="outline-danger" onClick={()=>{
+                          Core.exec("remove-attribute-from-object",{
+
+                          })
+                        }}>Delete</Button>
                     </InputGroup.Append>
 
                   </InputGroup>

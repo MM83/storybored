@@ -60,6 +60,8 @@
     "serve-static": "^1.13.2",
     "socket.io": "^2.2.0",
     "socketio-auth": "^0.1.1",
+    "three": "^0.111.0",
+    "three-orbitcontrols": "^2.110.1",
     "tween.js": "^16.6.0",
     "uws": "^99.0.0",
     "webfontloader": "^1.6.28"
