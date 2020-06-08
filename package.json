@@ -38,8 +38,8 @@
     }
   },
   "dependencies": {
+    "@createjs/easeljs": "^2.0.0-beta.4",
     "connect": "^3.6.6",
-    "createjs": "1.0.1",
     "cross-env": "5.2.0",
     "draft-js": "^0.11.0",
     "engine.io": "^3.3.2",

@@ -13,7 +13,8 @@
   background: white;
   flex-grow: 1;
   margin: 1rem;
-  position: relative;
+  display: flex;
+  // position: relative;
 }
 .world-backing {
   position: absolute;
@@ -32,7 +33,9 @@
   background-size: cover;
 }
 .world-canvas {
-    position: absolute;
+    // position: absolute;
+    background: red;
+    width: 100%;
 }
 .world-layer {
   position: absolute;
@@ -60,4 +63,66 @@
   right: -0.5rem;
   bottom: -0.5rem;
   background: white;
+}
+
+.world-edit-block{
+  background: white;
+  // margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  padding: 0.5rem;
+}
+.world-edit-title {
+  margin: 0.5rem;
+  cursor: default;
+}
+.world-edit-buttons {
+  align-self: stretch;
+  display: flex;
+  justify-content: space-around;
+}
+.world-edit-buttons > button {
+  flex-basis: 0;
+  flex-grow: 1;
+  margin: 0.125rem;
+}
+
+.world-panel {
+	background: $lightest;
+	border-right: 1px solid $lighter;
+	width: 16rem;
+  flex-shrink: 0;
+  padding-top: 1rem;
+  padding-right: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-self: stretch;
+}
+
+.world-panel > a {
+	transition: 0.5s;
+	text-decoration: none;
+	padding: 1em;
+	font-size: 0.8em;
+	padding-left: 2rem;
+  cursor: pointer;
+}
+
+.world-panel > h1 {
+	font-weight: 300;
+	font-size: 1em;
+	margin: 0.5rem;
+	margin-top: 1rem;
+	margin-left: 0.75rem;
+	padding: 0;
+}
+
+.world-panel > a:hover {
+	background: #ccc;
+	text-decoration: none;
+}
+
+.world-panel-theme {
+  // align-self: flex-s;
 }

@@ -16,7 +16,6 @@ import ViewRegions from './ViewRegions';
 import ViewAttributes from './ViewAttributes';
 import ViewWorld from './ViewWorld';
 import ViewModal from './ViewModal';
-import ViewTimeline from './ViewTimeline';
 
 
 class ViewApp extends React.Component {
@@ -47,7 +46,6 @@ class ViewApp extends React.Component {
                   <Route path="/regions" component={ViewRegions}/>
                   <Route path="/attributes" component={ViewAttributes}/>
                   <Route path="/world" component={ViewWorld}/>
-                  <Route path="/timeline" component={ViewTimeline}/>
                 </Switch>
               </div>
             </HashRouter>

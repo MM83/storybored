@@ -20,13 +20,11 @@ class ViewApp extends React.Component {
           <h1>Actors</h1>
           <a href="#/characters">Characters</a>
           <a href="#/items">Items</a>
+          <a href="#/events">Events</a>
           <h1>Space</h1>
           <a href="#/locations">Locations</a>
           <a href="#/regions">Regions</a>
           <a href="#/world">World</a>
-          <h1>Time</h1>  
-          <a href="#/events">Events</a>
-          <a href="#/timeline">Timeline</a>
         </div>
       );
   }

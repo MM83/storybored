@@ -4,6 +4,7 @@
 	background: $lightest;
 	border-right: 1px solid $lighter;
 	width: 16em;
+	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
 	align-self: stretch;

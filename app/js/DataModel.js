@@ -67,6 +67,7 @@ export default new function DataModel()
         desc  : "",
         guid  : Core.getUID(),
         attributes : [],
+        border : [],
         tags  : [],
         notes : []
       },{
@@ -74,6 +75,7 @@ export default new function DataModel()
         desc  : "",
         guid  : Core.getUID(),
         attributes : [],
+        border : [],
         tags  : [],
         notes : []
       },{
@@ -81,6 +83,7 @@ export default new function DataModel()
         desc  : "",
         guid  : Core.getUID(),
         attributes : [],
+        border : [],
         tags  : [],
         notes : []
       }
@@ -96,22 +99,26 @@ export default new function DataModel()
       guid  : Core.getUID(),
       tags  : [],
       notes : [],
-      position : [20, 50],
+      border : [
+        [2100, 2200], [2200, 2300], [2100, 2400], 
+      ],
       attributes : [],
-      radius : 100,
-      shapeType : "circle",
-      color : "#0099ff"
+      radius : 50,
+      shapeType : "polygon",
+      color : '#00ff99'
     },{
       name  : "Sobbo Earth",
       desc  : "",
       guid  : Core.getUID(),
       tags  : [],
       notes : [],
-      position : [120, 50],
+      border : [
+      ],
+      position : [2800, 2800],
       attributes : [],
-      radius : 30,
+      radius : 60,
       shapeType : "circle",
-      color : "#ff9900"
+      color : '#ff9900'
     }],
     selectedRegion : -1,
 
