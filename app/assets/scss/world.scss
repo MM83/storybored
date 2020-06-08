@@ -9,12 +9,27 @@
   margin-top: 0.75rem;
 
 }
-.world-container {
-  background: white;
+
+.timeline-container {
+  height: 20vh;
+  align-self: stretch;
+  background: red;
+}
+
+.world-and-timeline {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.world-container {
+  background: white;
   display: flex;
   position: relative;
+  flex-grow: 1;
 }
 .world-backing {
   position: absolute;

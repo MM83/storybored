@@ -20,7 +20,8 @@ class ViewWorld extends React.Component {
     this.state = {
       region : 0,
       location : 0,
-      lastClickRegion : false
+      lastClickRegion : false,
+      drawingRegion : false
     };
 
     this.regionMap = {};
@@ -28,8 +29,14 @@ class ViewWorld extends React.Component {
 
   }
 
+  clickRegion()
+  {
+    console.log("FASSO", this.regionIndex);
+  }
+
   drawWorld()
   {
+
       let story = Core.query("get-story");
       let map = this.regionMap;
       let regions = story.regions;
@@ -39,7 +46,10 @@ class ViewWorld extends React.Component {
 
       for(let i = 0; i < rl; ++i)
       {
+
         let region = regions[i];
+        let hadData = !!map[region.guid];
+
         let data = map[region.guid] = map[region.guid] || {
           shape : new createjs.Shape(),
           text : new createjs.Text("SHIT", "120px Arial", "white")
@@ -48,6 +58,19 @@ class ViewWorld extends React.Component {
         let text = data.text;
         let shape = data.shape;
         let graphics = shape.graphics;
+
+
+        if(!hadData)
+        {
+          shape.onClick = ()=>
+          {
+            this.state.region = i;
+            this.state.lastClickRegion = true;
+            this.setState({});
+            this.drawWorld();
+          }
+          shape.addEventListener("click", shape.onClick);
+        }
 
         stage.addChild(shape);
         stage.addChild(text);
@@ -58,7 +81,6 @@ class ViewWorld extends React.Component {
 
         let minX = 0, minY = 0, maxX = 0, maxY = 0;
 
-        console.log("LEGO LAND");
         switch(region.shapeType)
         {
           case "polygon":
@@ -68,8 +90,6 @@ class ViewWorld extends React.Component {
             for(let j = 0; j < bl; ++j)
             {
               let bp = border[j];
-
-              bp = [Math.random() * 4096, Math.random() * 4096];
 
               //if first, set mins and maxes
               if(j == 0)
@@ -107,7 +127,10 @@ class ViewWorld extends React.Component {
 
         graphics.endFill();
 
-        shape.alpha = Math.random();
+
+        let selected = (state.region == i) && state.lastClickRegion;
+        shape.alpha = selected ? 1 : 0.5;
+
 
       }
 
@@ -132,6 +155,7 @@ class ViewWorld extends React.Component {
     bgShape.graphics.drawRect(0, 0, 4096, 4096);
     stage.addChild(bgShape);
 
+    this.drawWorld();
 
   }
 
@@ -149,19 +173,31 @@ class ViewWorld extends React.Component {
       let stageStyle = {
         position: "absolute"
       }
-      
-      this.drawWorld();
 
       return (
         <div className="app-panel">
           <div className="generic-panel">
 
-            <div ref={this.containerRef} className="world-container">
-              <div className="world-scroller">
-                <canvas ref={this.canvasRef} className="world-canvas" width="4096" height="4096"></canvas>
+            <div className="world-and-timeline">
+              <div ref={this.containerRef} className="world-container">
+                <div className="world-scroller">
+                  <canvas ref={this.canvasRef} className="world-canvas" width="4096" height="4096"></canvas>
+                </div>
               </div>
+              <div className="timeline-container">
+                <div className="timeline-options">
+                  <InputGroup size="sm">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text>Length</InputGroup.Text>
+                    </InputGroup.Prepend>
+                      <FormControl></FormControl>
+                      <Button>Rescale</Button>
+                  </InputGroup>
 
+                </div>
+              </div>
             </div>
+
             <div className="world-panel">
 
               <DropdownButton className="world-panel-theme" size="sm"
@@ -186,17 +222,17 @@ class ViewWorld extends React.Component {
                         <div className="world-edit-title" key={index}>{item.name}</div>
                         <div className="world-edit-buttons">
                           <Button size="sm">Focus</Button>
-                          <Button size="sm">Draw</Button>
+                          <Button size="sm" onClick={()=>{}}>Draw</Button>
                           <Button size="sm">Delete</Button>
                         </div>
                       </div>
 
                     );
                   return(<a onClick={()=>{
-                    this.setState({
-                      region : index,
-                      lastClickRegion : true
-                    })
+                    this.state.region = index;
+                    this.state.lastClickRegion = true;
+                    this.setState({});
+                    this.drawWorld();
                   }} key={index}>{item.name}</a>)
                 })
               }
@@ -218,10 +254,10 @@ class ViewWorld extends React.Component {
 
                       );
                     return(<a onClick={()=>{
-                      this.setState({
-                        location : index,
-                        lastClickRegion : false
-                      })
+                      this.state.location = index;
+                      this.state.lastClickRegion = false;
+                      this.setState({});
+                      this.drawWorld();
                     }} key={index}>{item.name}</a>)
                   })
                 }

@@ -100,7 +100,7 @@ export default new function DataModel()
       tags  : [],
       notes : [],
       border : [
-        [2100, 2200], [2200, 2300], [2100, 2400], 
+        [0, 0], [1200, 100], [650, 800], [80, 500]
       ],
       attributes : [],
       radius : 50,
@@ -117,6 +117,19 @@ export default new function DataModel()
       position : [2800, 2800],
       attributes : [],
       radius : 60,
+      shapeType : "circle",
+      color : '#ff9900'
+    },{
+      name  : "Trebbo Earth",
+      desc  : "",
+      guid  : Core.getUID(),
+      tags  : [],
+      notes : [],
+      border : [
+      ],
+      position : [2800, 2000],
+      attributes : [],
+      radius : 180,
       shapeType : "circle",
       color : '#ff9900'
     }],
