@@ -14,7 +14,7 @@
   flex-grow: 1;
   margin: 1rem;
   display: flex;
-  // position: relative;
+  position: relative;
 }
 .world-backing {
   position: absolute;
@@ -28,14 +28,12 @@
   top: 0;
   left: 0;
   overflow: scroll;
-  background: red;
-  background-position: center;
-  background-size: cover;
 }
 .world-canvas {
     // position: absolute;
-    background: red;
-    width: 100%;
+    // background: red;
+    width: 200vmin;
+    height: 200vmin;
 }
 .world-layer {
   position: absolute;

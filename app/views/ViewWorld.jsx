@@ -7,17 +7,6 @@ import ImgSrc from '../assets/images/map.jpg';
 import MapTex from '../assets/images/maptex.jpg';
 import Create from '../js/create';
 
-
-
-const OrbitControls = require('three-orbitcontrols');
-import
-{
-  Camera, Scene, WebGLRenderer, PerspectiveCamera, PlaneGeometry, Group, CircleGeometry,
-  CubeGeometry, MeshPhysicalMaterial, Mesh, PointLight, MeshPhongMaterial, MeshBasicMaterial,
-  Shape, ShapeGeometry, CanvasTexture
-} from 'three';
-
-
 class ViewWorld extends React.Component {
 
   constructor(props)
@@ -36,21 +25,6 @@ class ViewWorld extends React.Component {
 
     this.regionMap = {};
 
-    let canvas = this.canvas = document.createElement("canvas");
-    this.canvas.width = this.canvas.height = 4096;
-    let stage = this.stage = new createjs.Stage(this.canvas);
-
-    canvas.style.position = "absolute";
-    canvas.style.top = 0;
-    canvas.style.left = 0;
-    canvas.style.width = "25vh";
-    canvas.style.height = "25vh";
-    document.body.appendChild(canvas);
-
-    let bgShape = new createjs.Shape();
-    bgShape.graphics.beginFill("#222");
-    bgShape.graphics.drawRect(0, 0, 4096, 4096);
-    stage.addChild(bgShape);
 
   }
 
@@ -84,7 +58,7 @@ class ViewWorld extends React.Component {
 
         let minX = 0, minY = 0, maxX = 0, maxY = 0;
 
-
+        console.log("LEGO LAND");
         switch(region.shapeType)
         {
           case "polygon":
@@ -137,11 +111,7 @@ class ViewWorld extends React.Component {
 
       }
 
-
       console.log("ctex", this.canvasTexture);
-
-      // if(this.canvasTexture)
-        // this.canvasTexture.image = this.canvas;
 
       if(this.mapMaterial){
         this.mapMaterial.needsUpdate = true;
@@ -154,60 +124,13 @@ class ViewWorld extends React.Component {
 
   componentDidMount() {
 
-    let cRef = this.containerRef.current;
+    let stage = this.stage = new createjs.Stage(this.canvasRef.current);
 
-    this.camera = new PerspectiveCamera( 45, cRef.offsetWidth / cRef.offsetHeight, 0.1, 4000 );
-    this.scene = new Scene();
+    let bgShape = new createjs.Shape();
 
-    this.canvasTexture = new Texture(this.canvas);
-    this.mapMaterial = new MeshBasicMaterial({
-      color : 0xFFFFFF,
-      map : this.canvasTexture
-    });
-
-
-    this.mesh = new Mesh
-    (
-      new PlaneGeometry(1000, 1000, 30, 30),
-      this.mapMaterial
-    );
-    this.light = new PointLight( 0xffffff, 1, 1000, 2);
-    this.light.position.set(20, 100, 40);
-    this.scene.add(this.light);
-    this.mesh.position.set(0, 0, 0);
-    this.mesh.rotation.set(-Math.PI/2, 0, 0);
-    this.regionContainer = new Group();
-    this.regionContainer.rotation.x = -Math.PI/2;
-    this.regionContainer.position.y = 0.2;
-    this.scene.add(this.regionContainer);
-    this.scene.add(this.mesh);
-    //
-    // let cube = new Mesh(new CubeGeometry(2, 2, 2), new MeshPhysicalMaterial({ color : 0xaf3fff }));
-    // this.scene.add(cube);
-
-    this.camera.position.z = 10;
-    this.camera.position.y = 3;
-    this.renderer = new WebGLRenderer({
-      canvas : this.canvasRef.current
-    });
-    this.domElement = this.renderer.domElement;
-    this.mounted = true;
-    let r = this.renderer;
-
-    // var controls = new OrbitControls( this.camera, this.domElement );
-    const controls = new OrbitControls(this.camera, this.domElement)
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
-    // controls.enableZoom = false;
-
-    let f = ()=>{
-      r.render(this.scene, this.camera);
-      if(this.mapMaterial)
-      requestAnimationFrame(f);
-    }
-    f();
-
-    // this.drawWorld();
+    bgShape.graphics.beginFill("#222");
+    bgShape.graphics.drawRect(0, 0, 4096, 4096);
+    stage.addChild(bgShape);
 
 
   }
@@ -226,7 +149,7 @@ class ViewWorld extends React.Component {
       let stageStyle = {
         position: "absolute"
       }
-
+      
       this.drawWorld();
 
       return (
@@ -234,7 +157,10 @@ class ViewWorld extends React.Component {
           <div className="generic-panel">
 
             <div ref={this.containerRef} className="world-container">
-              <canvas ref={this.canvasRef} className="world-canvas" width="800" height="600"></canvas>
+              <div className="world-scroller">
+                <canvas ref={this.canvasRef} className="world-canvas" width="4096" height="4096"></canvas>
+              </div>
+
             </div>
             <div className="world-panel">
 
