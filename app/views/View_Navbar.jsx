@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import $ from 'jquery';
 import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 
 
@@ -14,7 +13,7 @@ export default function Overview()
 
   console.log("effect ors", useEffect);
 
-  // useEffect(()=>{});
+  useEffect(()=>{});
 
   // useEffect(()=>
   // {
