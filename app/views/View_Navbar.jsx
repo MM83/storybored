@@ -5,21 +5,19 @@ import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 export default function Overview()
 {
 
+  const [rootLocation, setRootLocation] = useState("");
+
   let checkLocation = (e)=>
   {
-    console.log("I LIKE HASHES", e);
+    setRootLocation(window.location.hash.split("/")[1]);
   }
 
-
-  console.log("effect ors", useEffect);
-
-  useEffect(()=>{});
-
-  // useEffect(()=>
-  // {
-  //   window.addEventListener("hashchange", checkLocation);
-  //   // return () => window.removeEventListener("hashchange", checkLocation);
-  // })
+  useEffect(()=>
+  {
+    window.addEventListener("hashchange", checkLocation);
+    checkLocation();
+    return () => window.removeEventListener("hashchange", checkLocation);
+  })
 
   return (
     <React.Fragment>
@@ -44,9 +42,44 @@ export default function Overview()
         </Nav>
     </Navbar>
     <Navbar bg="sub" expand="lg" >
-      <Nav.Link active href="#/overview/synopsis">Synopsis</Nav.Link>
-      <Nav.Link href="#/overview/notes">Notes</Nav.Link>
-      <Nav.Link href="#/overview/attributes">Attributes</Nav.Link>
+
+      {
+        (rootLocation == "overview") && (
+          <React.Fragment>
+            <Nav.Link active href="#/overview/synopsis">Synopsis</Nav.Link>
+            <Nav.Link href="#/overview/notes">Notes</Nav.Link>
+            <Nav.Link href="#/overview/attributes">Attributes</Nav.Link>
+          </React.Fragment>
+        )
+      }
+      {
+        (rootLocation == "entities") && (
+          <React.Fragment>
+            <Nav.Link active href="#/overview/synopsis">Characters</Nav.Link>
+            <Nav.Link href="#/overview/notes">Items</Nav.Link>
+          </React.Fragment>
+        )
+      }
+      {
+        (rootLocation == "world") && (
+          <React.Fragment>
+            <Nav.Link active href="#/overview/synopsis">Locations</Nav.Link>
+            <Nav.Link href="#/overview/notes">Regions</Nav.Link>
+            <Nav.Link href="#/overview/attributes">Lands</Nav.Link>
+          </React.Fragment>
+        )
+      }
+      {
+        (rootLocation == "events") && (
+          <React.Fragment>
+            <Nav.Link active href="#/overview/synopsis">Synopsis</Nav.Link>
+            <Nav.Link href="#/overview/notes">Notes</Nav.Link>
+            <Nav.Link href="#/overview/attributes">Attributes</Nav.Link>
+          </React.Fragment>
+        )
+      }
+
+
     </Navbar>
 
     </React.Fragment>)
